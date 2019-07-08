@@ -13,27 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
-/**
- * Admin Service responsible for generating user driven data  
- */
 package org.springframework.nanotrader.service.support;
 
-import org.springframework.nanotrader.service.domain.PerfTestData;
+import java.util.Map;
+
+import org.springframework.nanotrader.data.service.TradingService;
+import org.springframework.nanotrader.service.domain.MarketSummary;
 
 /**
- * @author Ilayaperumal Gopinathan
- *
+ * @author Gary Russell
+ * 
  */
-public interface AdminServiceFacade {
+public interface TradingServiceFacade {
 
-	public abstract void recreateData(int count);
-	
-	public abstract Integer getProgressCount();
-	
-	public abstract void deleteUserAccount(String userid);
-	
-	public abstract void runPerfTest(PerfTestData perfTestData, String serverUrl);
-	
+	MarketSummary findMarketSummary();
+
 }
