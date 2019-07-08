@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.nanotrader.service.domain.MarketSummary;
 
-import org.springframework.nanotrader.service.domain.Quote;
+import org.springframework.nanotrader.data.domain.Quote;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Sort;
