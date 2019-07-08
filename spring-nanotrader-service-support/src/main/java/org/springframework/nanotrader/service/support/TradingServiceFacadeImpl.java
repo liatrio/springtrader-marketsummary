@@ -28,7 +28,7 @@ import org.dozer.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.nanotrader.service.domain.MarketSummary;
+import org.springframework.nanotrader.data.domain.MarketSummary;
 
 import org.springframework.nanotrader.data.domain.Quote;
 import org.springframework.stereotype.Service;
@@ -50,9 +50,6 @@ public class TradingServiceFacadeImpl implements TradingServiceFacade {
     private static Logger log = LoggerFactory.getLogger(TradingServiceFacadeImpl.class);
 
     private static final String MARKET_SUMMARY_MAPPING = "marketSummary";
- 
-    @Resource
-    private TradingService tradingService;
 
     @Resource
     private Mapper mapper;
