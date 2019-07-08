@@ -1,0 +1,25 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+// tag::repositories[]
+repositories {
+  mavenCentral()
+  maven { url 'http://repo.springsource.org/plugins-release' }
+}
+// end::repositories[]
+
+// tag::jar[]
+jar {
+    baseName = 'controller-gradle'
+    version =  '0.1.0'
+}
+// end::jar[]
+
+dependencies {
+    compile "org.springframework:spring-webmvc:3.1.2.RELEASE"
+    compile "javax.inject:javax.inject:1"
+}
+// end::dependencies[]
+
+// tag::wrapper[]
+// end::wrapper[]
