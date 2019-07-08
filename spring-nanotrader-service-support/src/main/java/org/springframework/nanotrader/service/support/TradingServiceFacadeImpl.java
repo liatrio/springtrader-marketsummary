@@ -28,19 +28,9 @@ import org.dozer.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.nanotrader.data.service.TradingService;
-import org.springframework.nanotrader.service.domain.Account;
-import org.springframework.nanotrader.service.domain.Accountprofile;
-import org.springframework.nanotrader.service.domain.CollectionResult;
-import org.springframework.nanotrader.service.domain.Holding;
-import org.springframework.nanotrader.service.domain.HoldingSummary;
 import org.springframework.nanotrader.service.domain.MarketSummary;
 
 import org.springframework.nanotrader.service.domain.Quote;
-import org.springframework.nanotrader.service.support.exception.AuthenticationException;
-import org.springframework.nanotrader.service.support.exception.NoRecordsFoundException;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Sort;
@@ -107,3 +97,4 @@ public class TradingServiceFacadeImpl implements TradingServiceFacade {
 
 
 }
+

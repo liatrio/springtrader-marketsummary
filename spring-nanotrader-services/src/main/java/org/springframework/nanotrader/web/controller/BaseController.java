@@ -34,10 +34,6 @@ public class BaseController {
 		this.tradingServiceFacade = tradingServiceFacade;
 	}
 
-	public void setTradingServiceFacade(AdminServiceFacade adminServiceFacade) {
-		this.adminServiceFacade = adminServiceFacade;
-	}
-
 	public HttpHeaders getNoCacheHeaders() {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.set("Cache-Control", "no-cache");
@@ -45,3 +41,4 @@ public class BaseController {
 	}
 
 }
+

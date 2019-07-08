@@ -48,3 +48,4 @@ public class MarketSummaryController extends BaseController {
 	
 	
 }
+

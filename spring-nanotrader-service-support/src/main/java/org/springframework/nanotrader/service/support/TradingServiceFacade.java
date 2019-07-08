@@ -17,7 +17,6 @@ package org.springframework.nanotrader.service.support;
 
 import java.util.Map;
 
-import org.springframework.nanotrader.data.service.TradingService;
 import org.springframework.nanotrader.service.domain.MarketSummary;
 
 /**
@@ -29,3 +28,4 @@ public interface TradingServiceFacade {
 	MarketSummary findMarketSummary();
 
 }
+
