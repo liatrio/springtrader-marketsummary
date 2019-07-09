@@ -17,7 +17,7 @@ package org.springframework.nanotrader.service.support;
 
 import java.util.Map;
 
-import org.springframework.nanotrader.service.domain.MarketSummary;
+import org.springframework.nanotrader.data.domain.MarketSummary;
 
 /**
  * @author Gary Russell

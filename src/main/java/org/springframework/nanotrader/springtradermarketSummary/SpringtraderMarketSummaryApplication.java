@@ -9,5 +9,4 @@ public class SpringtraderMarketSummaryApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringtraderMarketSummaryApplication.class, args);
 	}
-
 }

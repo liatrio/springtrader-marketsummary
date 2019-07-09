@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Date;
 
 import javax.annotation.Resource;
 
@@ -29,7 +30,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.nanotrader.data.domain.MarketSummary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
+import org.springframework.nanotrader.data.repository.MarketSummaryRepository;
+
+import org.springframework.nanotrader.data.repository.QuoteRepository;
 import org.springframework.nanotrader.data.domain.Quote;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +52,8 @@ import org.springframework.data.domain.Sort.Direction;
 */
 @Service
 public class TradingServiceFacadeImpl implements TradingServiceFacade {
+
+	private static Integer TOP_N = 3;
 
     private static Logger log = LoggerFactory.getLogger(TradingServiceFacadeImpl.class);
 
