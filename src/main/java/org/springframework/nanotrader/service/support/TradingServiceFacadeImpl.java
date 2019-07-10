@@ -38,6 +38,7 @@ import org.springframework.nanotrader.data.repository.MarketSummaryRepository;
 import org.springframework.nanotrader.data.repository.QuoteRepository;
 import org.springframework.nanotrader.data.domain.Quote;
 import org.springframework.stereotype.Service;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -69,34 +70,34 @@ public class TradingServiceFacadeImpl implements TradingServiceFacade {
 	private MarketSummaryRepository marketSummaryRepository;
  
     public MarketSummary findMarketSummary() { 
-        if (log.isDebugEnabled()) {
-            log.debug("TradingServiceFacade.findMarketSummary: Start");
-        }
-		MarketSummary marketSummary = marketSummaryRepository.findMarketSummary();
-		// get top losing stocks
-		Page<Quote> losers = quoteRepository.findAll(new PageRequest(0, TOP_N, new Sort(Direction.ASC, "change1")));
+      if (log.isDebugEnabled()) {
+          log.debug("TradingServiceFacade.findMarketSummary: Start");
+      }
+      MarketSummary marketSummary = marketSummaryRepository.findMarketSummary();
+      // get top losing stocks
+      Page<Quote> losers = quoteRepository.findAll(new PageRequest(0, TOP_N, new Sort(Direction.ASC, "change1")));
 
-		// get top gaining stocks
-		Page<Quote> winners = quoteRepository.findAll(new PageRequest(0, TOP_N, new Sort(Direction.DESC, "change1")));
+      // get top gaining stocks
+      Page<Quote> winners = quoteRepository.findAll(new PageRequest(0, TOP_N, new Sort(Direction.DESC, "change1")));
 
-		List<Quote> topLosers = new ArrayList<Quote>(TOP_N);
-		for (Quote q : losers) {
-			topLosers.add(q);
-		}
-		List<Quote> topGainers = new ArrayList<Quote>(TOP_N);
-		for (Quote q : winners) {
-			topGainers.add(q);
-		}
-		marketSummary.setTopLosers(topLosers);
-		marketSummary.setTopGainers(topGainers);
-		marketSummary.setSummaryDate(new Date());
+      List<Quote> topLosers = new ArrayList<Quote>(TOP_N);
+        for (Quote q : losers) {
+          topLosers.add(q);
+      }
+      List<Quote> topGainers = new ArrayList<Quote>(TOP_N);
+        for (Quote q : winners) {
+          topGainers.add(q);
+      }
+      marketSummary.setTopLosers(topLosers);
+      marketSummary.setTopGainers(topGainers);
+      marketSummary.setSummaryDate(new Date());
 
-        MarketSummary marketSummaryResponse = new MarketSummary();
-        mapper.map(marketSummary, marketSummaryResponse, MARKET_SUMMARY_MAPPING);
-        if (log.isDebugEnabled()) {
-            log.debug("TradingServiceFacade.findMarketSummary: completed successfully.");
-        }
-        return marketSummaryResponse;
+      MarketSummary marketSummaryResponse = new MarketSummary();
+      mapper.map(marketSummary, marketSummaryResponse, MARKET_SUMMARY_MAPPING);
+      if (log.isDebugEnabled()) {
+          log.debug("TradingServiceFacade.findMarketSummary: completed successfully.");
+      }
+      return marketSummaryResponse;
     }
 
 
