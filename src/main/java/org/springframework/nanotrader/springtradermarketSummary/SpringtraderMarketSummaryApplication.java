@@ -8,6 +8,6 @@ import org.springframework.nanotrader.web.controller.MarketSummaryController;
 public class SpringtraderMarketSummaryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MarketSummaryController.class, args);
+		SpringApplication.run(SpringtraderMarketSummaryApplication.class, args);
 	}
 }
