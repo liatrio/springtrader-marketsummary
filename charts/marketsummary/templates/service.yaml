@@ -1,16 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "marketsummary.fullname" . }}
-  labels:
-{{ include "marketsummary.labels" . | indent 4 }}
+  name: marketsummary
 spec:
-  type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+  - name: app
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
   selector:
-    app.kubernetes.io/name: {{ include "marketsummary.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app: marketsummary
+  type: ClusterIP

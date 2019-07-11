@@ -2,4 +2,13 @@ apiVersion: skaffold/v1beta11
 kind: Config
 build:
   artifacts:
-  - image: springtrader-marketsummary
+  - image: marketsummary
+    context: .
+
+deploy:
+  helm:
+    releases:
+      - name: marketsummary
+        chartPath: ./charts/marketsummary
+        values:
+          image: marketsummary
