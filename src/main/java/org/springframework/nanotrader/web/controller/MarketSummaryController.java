@@ -23,11 +23,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-
 /**
- *  Provides JSON based REST api to Market Summary
- *  
- *  @author Brian Dussault 
+ * Provides JSON based REST api to Market Summary
+ * 
+ * @author Brian Dussault
  */
 @Controller
 public class MarketSummaryController extends BaseController {
@@ -35,17 +34,14 @@ public class MarketSummaryController extends BaseController {
 	@RequestMapping(value = "/marketSummary", method = RequestMethod.GET)
 	public ResponseEntity<MarketSummary> findMarketSummary() {
 
-		return new ResponseEntity<MarketSummary>(getTradingServiceFacade().findMarketSummary(), 
-				getNoCacheHeaders(),
+		return new ResponseEntity<MarketSummary>(getTradingServiceFacade().findMarketSummary(), getNoCacheHeaders(),
 				HttpStatus.OK);
-				
+
 	}
 
 	@RequestMapping(value = "/marketSummary", method = RequestMethod.POST)
-	@ResponseStatus( HttpStatus.METHOD_NOT_ALLOWED )
+	@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
 	public void post() {
 	}
-	
-	
-}
 
+}

@@ -12,43 +12,13 @@ sourceCompatibility = '1.8'
 repositories {
 	mavenCentral()
   maven { url 'https://repo.spring.io/plugins-release/' }
-  //maven { url 'http://repo.springsource.org' }
-  //maven { url 'http://maven.springframework.org/release' }
-  //maven { url 'http://repo.springsource.org/libs-milestone' }
-  //maven { url 'http://spring-roo-repository.springsource.org/release' }
-  //maven { url 'http://maven.springframework.org/snapshot' }
-  //maven { url 'http://repo.springsource.org/plugins-release' }
 }
 
 dependencies {
 	implementation "org.springframework.boot:spring-boot-starter"
-
-  //implementation "org.springframework.integration:spring-integration-amqp"
-  implementation "net.sf.dozer:dozer:5.5.1"
-  //implementation "joda-time:joda-time"
-  //implementation  "org.springframework.data:spring-data-gemfire"
-
-  //implementation "org.springframework:spring-tx"
-  //implementation "org.aspectj:aspectjrt"
-  //implementation "org.springframework:spring-aspects"
-
-  //implementation "org.springframework.data:spring-data-jpa"
-  //implementation "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final"
-  //implementation "org.apache.commons:commons-lang3"
-  implementation "javax.validation:validation-api"
-  //implementation "org.hibernate:hibernate-core"
-  //implementation "org.hibernate:hibernate-entitymanager"
-  implementation "com.h2database:h2"
-
-  //implementation "org.springframework:spring-webmvc"
-
-  //implementation "com.jayway.jsonpath:json-path"
-  //implementation "org.aspectj:aspectjweaver"
-
   implementation 'org.springframework.boot:spring-boot-starter-web'
-  testImplementation 'org.springframework.boot:spring-boot-starter-test'
   implementation 'org.springframework.boot:spring-boot-starter-actuator'
   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-  //implementation 'com.vmware.sqlfire:sqlfireclient:1.0.3'
-  //developmentOnly 'org.springframework.boot:spring-boot-devtools'
+  implementation "com.h2database:h2"
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

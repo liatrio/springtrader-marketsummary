@@ -16,93 +16,75 @@
 package org.springframework.nanotrader.service.support;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.dozer.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.nanotrader.data.domain.MarketSummary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-
-import org.springframework.nanotrader.data.repository.MarketSummaryRepository;
-
-import org.springframework.nanotrader.data.repository.QuoteRepository;
-import org.springframework.nanotrader.data.domain.Quote;
-import org.springframework.stereotype.Service;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.nanotrader.data.domain.MarketSummary;
+import org.springframework.nanotrader.data.domain.Quote;
+import org.springframework.nanotrader.data.repository.MarketSummaryRepository;
+import org.springframework.nanotrader.data.repository.QuoteRepository;
+import org.springframework.stereotype.Service;
 
 /**
-* Facade that, generally, delegates directly to a {@link TradingService},
-* after mapping from service domain to data domain. For {@link #saveOrder(Order, boolean)},
-* and option for synch/asynch processing is provided.
-* @author Gary Russell
-* @author Brian Dussault
-* @author Kashyap Parikh
-*/
+ * Facade that, generally, delegates directly to a {@link TradingService}, after
+ * mapping from service domain to data domain. For
+ * {@link #saveOrder(Order, boolean)}, and option for synch/asynch processing is
+ * provided.
+ * 
+ * @author Gary Russell
+ * @author Brian Dussault
+ * @author Kashyap Parikh
+ */
 @Service
 public class TradingServiceFacadeImpl implements TradingServiceFacade {
 
-	private static Integer TOP_N = 3;
+  private static Integer TOP_N = 3;
 
-    private static Logger log = LoggerFactory.getLogger(TradingServiceFacadeImpl.class);
+  private static Logger log = LoggerFactory.getLogger(TradingServiceFacadeImpl.class);
 
-    private static final String MARKET_SUMMARY_MAPPING = "marketSummary";
+  @Autowired
+  private QuoteRepository quoteRepository;
 
-    //@Resource
-    private Mapper mapper;
+  @Autowired
+  private MarketSummaryRepository marketSummaryRepository;
 
-    @Autowired
-	private QuoteRepository quoteRepository;
+  public MarketSummary findMarketSummary() {
+    System.out.print("TradingServiceFacade.findMarketSummary: Start\n");
+    // if (log.isDebugEnabled()) {
+    // log.debug("TradingServiceFacade.findMarketSummary: Start");
+    // }
+    MarketSummary marketSummary = marketSummaryRepository.findMarketSummary();
+    // get top losing stocks
+    Page<Quote> losers = quoteRepository.findAll(new PageRequest(0, TOP_N, new Sort(Direction.ASC, "change1")));
 
-	@Autowired
-	private MarketSummaryRepository marketSummaryRepository;
- 
-    public MarketSummary findMarketSummary() { 
-      System.out.print("TradingServiceFacade.findMarketSummary: Start\n");
-      //if (log.isDebugEnabled()) {
-      //    log.debug("TradingServiceFacade.findMarketSummary: Start");
-      //}
-      MarketSummary marketSummary = marketSummaryRepository.findMarketSummary();
-      // get top losing stocks
-      Page<Quote> losers = quoteRepository.findAll(new PageRequest(0, TOP_N, new Sort(Direction.ASC, "change1")));
+    // get top gaining stocks
+    Page<Quote> winners = quoteRepository.findAll(new PageRequest(0, TOP_N, new Sort(Direction.DESC, "change1")));
 
-      // get top gaining stocks
-      Page<Quote> winners = quoteRepository.findAll(new PageRequest(0, TOP_N, new Sort(Direction.DESC, "change1")));
-
-      List<Quote> topLosers = new ArrayList<Quote>(TOP_N);
-        for (Quote q : losers) {
-          topLosers.add(q);
-      }
-      List<Quote> topGainers = new ArrayList<Quote>(TOP_N);
-        for (Quote q : winners) {
-          topGainers.add(q);
-      }
-      marketSummary.setTopLosers(topLosers);
-      marketSummary.setTopGainers(topGainers);
-      marketSummary.setSummaryDate(new Date());
-
-      System.out.print(marketSummary);
-      MarketSummary marketSummaryResponse = new MarketSummary();
-      mapper.map(marketSummary, marketSummaryResponse, MARKET_SUMMARY_MAPPING);
-      if (log.isDebugEnabled()) {
-          log.debug("TradingServiceFacade.findMarketSummary: completed successfully.");
-      }
-      return marketSummaryResponse;
+    List<Quote> topLosers = new ArrayList<Quote>(TOP_N);
+    for (Quote q : losers) {
+      topLosers.add(q);
     }
+    List<Quote> topGainers = new ArrayList<Quote>(TOP_N);
+    for (Quote q : winners) {
+      topGainers.add(q);
+    }
+    marketSummary.setTopLosers(topLosers);
+    marketSummary.setTopGainers(topGainers);
+    marketSummary.setSummaryDate(new Date());
 
-
+    if (log.isDebugEnabled()) {
+      log.debug("TradingServiceFacade.findMarketSummary: completed successfully.");
+    }
+    return marketSummary;
+  }
 
 }
-

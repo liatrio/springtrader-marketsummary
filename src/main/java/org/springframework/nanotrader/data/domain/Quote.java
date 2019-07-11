@@ -31,7 +31,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "quote")
 public class Quote implements Serializable {
 	@Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "quoteid")
     private Integer quoteid;
 

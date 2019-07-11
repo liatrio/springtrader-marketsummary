@@ -16,7 +16,6 @@
 package org.springframework.nanotrader.web.controller;
 
 import javax.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.nanotrader.service.support.TradingServiceFacade;
@@ -30,8 +29,7 @@ public class BaseController {
 		return tradingServiceFacade;
 	}
 
-	public void setTradingServiceFacade(
-			TradingServiceFacade tradingServiceFacade) {
+	public void setTradingServiceFacade(TradingServiceFacade tradingServiceFacade) {
 		this.tradingServiceFacade = tradingServiceFacade;
 	}
 
@@ -42,4 +40,3 @@ public class BaseController {
 	}
 
 }
-
