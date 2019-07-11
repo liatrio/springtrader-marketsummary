@@ -11,7 +11,7 @@ pipeline {
       }
     }
     stage ('Deploy to Staging') {
-      environment { 
+      environment {
         TILLER_NAMESPACE = "${env.stagingNamespace}"
         INGRESS_DOMAIN   = "${env.stagingDomain}"
       }
@@ -21,19 +21,20 @@ pipeline {
         }
       }
     }
-    stage ('Test Staging Deployment') {
-      agent {
-          label "lead-toolchain-maven"
+    stage ('Manual Ready Check') {
+      when {
+        branch 'master'
+      }
+      input {
+        message 'Deploy to Production?'
       }
       steps {
-        container('maven') {
-          sh "mvn clean test -B -DappUrl=https://knowledge-share-app.${env.stagingDomain} -f functional-tests"
-        }
+        echo "Deploying"
       }
     }
     stage ('Deploy to Production') {
       when {
-          branch 'master'
+        branch 'master'
       }
       environment {
         TILLER_NAMESPACE = "${env.productionNamespace}"
@@ -47,4 +48,3 @@ pipeline {
     }
   }
 }
-
