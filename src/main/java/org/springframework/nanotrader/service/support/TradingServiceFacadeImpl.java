@@ -58,10 +58,10 @@ public class TradingServiceFacadeImpl implements TradingServiceFacade {
   private MarketSummaryRepository marketSummaryRepository;
 
   public MarketSummary findMarketSummary() {
-    System.out.print("TradingServiceFacade.findMarketSummary: Start\n");
-    // if (log.isDebugEnabled()) {
-    // log.debug("TradingServiceFacade.findMarketSummary: Start");
-    // }
+    
+    if (log.isDebugEnabled()) {
+     log.debug("TradingServiceFacade.findMarketSummary: Start");
+    }
     MarketSummary marketSummary = marketSummaryRepository.findMarketSummary();
     // get top losing stocks
     Page<Quote> losers = quoteRepository.findAll(new PageRequest(0, TOP_N, new Sort(Direction.ASC, "change1")));
