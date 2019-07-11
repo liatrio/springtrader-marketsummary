@@ -33,10 +33,8 @@ public class MarketSummaryController extends BaseController {
 
 	@RequestMapping(value = "/marketSummary", method = RequestMethod.GET)
 	public ResponseEntity<MarketSummary> findMarketSummary() {
-
 		return new ResponseEntity<MarketSummary>(getTradingServiceFacade().findMarketSummary(), getNoCacheHeaders(),
 				HttpStatus.OK);
-
 	}
 
 	@RequestMapping(value = "/marketSummary", method = RequestMethod.POST)
