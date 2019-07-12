@@ -4,7 +4,6 @@ build:
   artifacts:
   - image: marketsummary
     context: .
-
 deploy:
   helm:
     releases:
@@ -13,3 +12,5 @@ deploy:
         namespace: springtrader
         values:
           image: marketsummary
+        setValueTemplates:
+          istio.domain: "{{if .INGRESS_DOMAIN}}{{.INGRESS_DOMAIN}}{{else}}default{{end}}"
