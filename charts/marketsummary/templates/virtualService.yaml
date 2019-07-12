@@ -1,0 +1,22 @@
+{{- if .Values.istio.enabled }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  gateways:
+  - springtrader-gateway
+  hosts:
+  - springtrader.{{ .Values.istio.domain }}
+  http:
+  - match:
+    - uri:
+       prefix: /spring-nanotrader-services/api/marketSummary
+    rewrite:
+      uri: /marketSummary
+    route:
+    - destination:
+        host: marketsummary
+        port:
+          number: 8080
+{{- end }}

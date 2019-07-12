@@ -45,3 +45,7 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+istio:
+  enabled: true
+  domain: local
