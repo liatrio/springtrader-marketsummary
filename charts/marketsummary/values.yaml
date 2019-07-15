@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image: marketsummary:latest
-
+version: "0.0.1-SNAPSHOT" 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
