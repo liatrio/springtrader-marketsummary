@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
     name: marketsummary-app
-    app: marketsummary-app
-    version: {{ .Values.version }}
+    labels:
+      app: marketsummary-app
+      version: {{ .Values.version }}
 spec:
     selector:
       matchLabels:
