@@ -12,7 +12,8 @@ spec:
     template:
       metadata:
         labels:
-            app: marketsummary-app
+          app: marketsummary-app
+          version: {{ .Values.version }}  
       spec:
         containers:
         - name: marketsummary
