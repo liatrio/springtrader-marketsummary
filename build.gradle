@@ -12,9 +12,12 @@ sourceCompatibility = '1.8'
 repositories {
 	mavenCentral()
   maven { url 'https://repo.spring.io/plugins-release/' }
+  maven { url 'https://mvnrepository.com/artifact/org.json/json' }
 }
 
 dependencies {
+  implementation group: 'org.json', name: 'json', version: '20180813'
+  implementation group: 'javax.json', name: 'javax.json-api', version: '1.1.4'
   implementation 'io.opentracing.contrib:opentracing-spring-jaeger-web-starter:2.0.0'
   implementation 'org.springframework.boot:spring-boot-starter'
   implementation 'org.springframework.boot:spring-boot-starter-web'
