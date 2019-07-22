@@ -16,14 +16,21 @@
 package org.springframework.nanotrader.web.controller;
 
 import java.util.Locale;
+import java.util.stream.Collectors;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.nanotrader.data.domain.MarketSummary;
 import org.springframework.nanotrader.data.util.CurrencyUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
@@ -31,11 +38,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * 
  * @author Brian Dussault
  */
+@Validated
 @Controller
 public class MarketSummaryController extends BaseController {
 
   @RequestMapping(value = "/marketSummary", method = RequestMethod.GET)
-  public ResponseEntity<MarketSummary> findMarketSummary(Locale locale) {
+  public ResponseEntity<MarketSummary> findMarketSummary(@HasCurrency Locale locale) {
     return new ResponseEntity<MarketSummary>(
         CurrencyUtils.convertCurrency(getTradingServiceFacade().findMarketSummary(), locale),
         getNoCacheHeaders(),
@@ -48,4 +56,13 @@ public class MarketSummaryController extends BaseController {
   public void post() {
   }
 
+  @ExceptionHandler
+  @ResponseBody
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public String handle(ConstraintViolationException exception) {
+    return exception.getConstraintViolations()
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .collect(Collectors.joining());
+  }
 }
