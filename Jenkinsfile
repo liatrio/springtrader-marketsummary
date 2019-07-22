@@ -13,7 +13,7 @@ pipeline {
     stage ('Deploy to Staging') {
       environment {
         TILLER_NAMESPACE = "${env.stagingNamespace}"
-        INGRESS_DOMAIN   = "${env.stagingDomain}"
+        ISTIO_DOMAIN   = "${env.stagingDomain}"
       }
       steps {
         container('skaffold') {
@@ -38,7 +38,7 @@ pipeline {
       }
       environment {
         TILLER_NAMESPACE = "${env.productionNamespace}"
-        INGRESS_DOMAIN   = "${env.productionDomain}"
+        ISTIO_DOMAIN   = "${env.productionDomain}"
       }
       steps {
         container('skaffold') {

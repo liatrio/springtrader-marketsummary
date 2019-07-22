@@ -1,4 +1,4 @@
-{{- if .Values.istio.enabled }}
+{{- if not (eq .Values.istioDomain "<no value>") -}}
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -7,7 +7,7 @@ spec:
   gateways:
   - springtrader-gateway
   hosts:
-  - springtrader.{{ .Values.istio.domain }}
+  - springtrader.{{ .Values.istioDomain }}
   http:
   - match:
     - uri:
