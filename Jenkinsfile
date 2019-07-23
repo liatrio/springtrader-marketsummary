@@ -25,6 +25,9 @@ pipeline {
       when {
         branch 'master'
       }
+      options {
+        timeout(time: 30, unit: 'MINUTES')
+      }
       input {
         message 'Deploy to Production?'
       }
