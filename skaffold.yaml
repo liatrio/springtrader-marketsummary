@@ -9,8 +9,7 @@ deploy:
     releases:
       - name: marketsummary
         chartPath: ./charts/marketsummary
-        namespace: springtrader
         values:
           image: marketsummary
         setValueTemplates:
-          istio.domain: "{{if .INGRESS_DOMAIN}}{{.INGRESS_DOMAIN}}{{else}}default{{end}}"
+          istioDomain: "{{.ISTIO_DOMAIN}}"
