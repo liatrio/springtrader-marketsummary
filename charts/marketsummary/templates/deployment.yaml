@@ -1,16 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Chart.Name }}
+  name: {{ .Chart.Name }}-app
   version: {{ .Values.version }}
+  labels:
+    app: {{ .Chart.Name }}-app
+    version: {{ .Values.version }}  
 spec:
   selector:
     matchLabels:
-      app: {{ .Chart.Name }}
+      app: {{ .Chart.Name }}-app
   template:
     metadata:
       labels:
-        app: {{ .Chart.Name }}
+        app: {{ .Chart.Name }}-app
         version: {{ .Values.version }}
     spec:
       containers:
@@ -30,4 +33,3 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
-        
