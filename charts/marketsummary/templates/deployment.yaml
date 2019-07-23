@@ -1,26 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: marketsummary
+  name: {{ .Chart.Name }}
   version: {{ .Values.version }}
 spec:
   selector:
     matchLabels:
-      app: marketsummary
+      app: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: marketsummary
+        app: {{ .Chart.Name }}
         version: {{ .Values.version }}
     spec:
       containers:
-      - name: marketsummary
+      - name: {{ .Chart.Name }}
         image: {{ .Values.image }}
         resources:
-          requests:
-            memory: "512Mi"
-            cpu: "4m"
-          limits:
-            memory: "768Mi"
-            cpu: "8m"
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
         
