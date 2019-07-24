@@ -34,7 +34,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 /**
  *  MarketSummaryControllerTest tests the MarketSummary REST api
- * 
+ *  
  *  @author Brian Dussault 
  *  @author
  */
@@ -61,5 +61,5 @@ public class MarketSummaryControllerTest {
 				.andExpect(jsonPath("$.percentGain").value(new BigDecimal(0).doubleValue()))
 				.andDo(print());
 	}
-    
+      
 }
