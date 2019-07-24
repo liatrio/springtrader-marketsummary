@@ -6,7 +6,7 @@ pipeline {
     stage('Build') {
       steps {
         container('skaffold') {
-          sh "skaffold build --quiet > image.json"
+          sh "skaffold build --file-output=image.json"
         }
       }
     }
