@@ -24,7 +24,7 @@ import org.springframework.nanotrader.data.domain.MarketSummary;
  */
 public interface TradingServiceFacade {
 
-	MarketSummary findMarketSummary(Locale locale);
+	MarketSummary findMarketSummary();
 
 }
 

@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.nanotrader.data.util.CurrencyUtils;
 
 /**
  * Provides JSON based REST api to Market Summary
@@ -35,8 +36,12 @@ public class MarketSummaryController extends BaseController {
 	@RequestMapping(value = "/marketSummary", method = RequestMethod.GET)
 	public ResponseEntity<MarketSummary> findMarketSummary(Locale locale) {
 
-		return new ResponseEntity<MarketSummary>(getTradingServiceFacade().findMarketSummary(locale), getNoCacheHeaders(),
-				HttpStatus.OK);
+		return new ResponseEntity<MarketSummary>(
+         CurrencyUtils.convertCurrency(getTradingServiceFacade()
+          .findMarketSummary(), locale),
+         getNoCacheHeaders(),
+         HttpStatus.OK
+        );
 	}
 
 	@RequestMapping(value = "/marketSummary", method = RequestMethod.POST)

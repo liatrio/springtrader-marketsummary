@@ -15,9 +15,6 @@
 */
 package org.springframework.nanotrader.service.support;
 
-import org.json.JSONObject;
-import java.net.*;
-import java.io.*;
 import java.lang.*;
 import java.util.*;
 import java.util.ArrayList;
@@ -26,7 +23,6 @@ import java.util.List;
 
 
 import javax.annotation.Resource;
-import javax.json.*;
 
 import java.math.BigDecimal;
 import org.slf4j.Logger;
@@ -66,13 +62,12 @@ public class TradingServiceFacadeImpl implements TradingServiceFacade {
   @Autowired
   private MarketSummaryRepository marketSummaryRepository;
 
-  public MarketSummary findMarketSummary(Locale locale) {
+  public MarketSummary findMarketSummary() {
     
     if (log.isDebugEnabled()) {
      log.debug("TradingServiceFacade.findMarketSummary: Start");
     }
     MarketSummary marketSummary = marketSummaryRepository.findMarketSummary();
-    convertCurrency(marketSummary, locale);
     // get top losing stocks
     Page<Quote> losers = quoteRepository.findAll(new PageRequest(0, TOP_N, new Sort(Direction.ASC, "change1")));
 
@@ -97,120 +92,4 @@ public class TradingServiceFacadeImpl implements TradingServiceFacade {
     return marketSummary;
   }
 
-  public void convertCurrency(MarketSummary marketSummary, Locale locale) {
-
-    String country = locale.getCountry();
-
-    BigDecimal tradeStockIndexAverage = marketSummary.getTradeStockIndexAverage();
-    BigDecimal tradeStockIndexOpenAverage = marketSummary.getTradeStockIndexOpenAverage();
-
-    //BigDecimal exchangeRate = new BigDecimal(1.0);
-    BigDecimal exchangeRate = null;
-
-    String content = "";
-    JSONObject rates = null;
-    
-    try {
-      URL url = new URL("https://api.exchangerate-api.com/v4/latest/USD");
-      HttpURLConnection con = (HttpURLConnection) url.openConnection();
-      con.setRequestMethod("GET");
-      BufferedReader in = new BufferedReader(
-          new InputStreamReader(con.getInputStream())
-        );
-      String inputLine;
-      StringBuffer contentBuffer = new StringBuffer();
-      while ((inputLine = in.readLine()) != null) {
-        contentBuffer.append(inputLine);
-      }
-      in.close();
-
-      content = contentBuffer.toString();
-      JSONObject obj = new JSONObject(content);
-      rates = obj.getJSONObject("rates");
-
-    } catch(Exception e) {}
-
-
-
-    System.out.println(country);
-    switch(country) {
-      case "CANADA":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("CAD"));
-        break;
-      case "CANADA_FRENCH":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("CAD"));
-        break;
-      case "CHINA":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("CNY"));
-        break;
-      case "CHINESE":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("CNY"));
-        break;
-      case "ENGLISH":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("GBP"));
-        break;
-      case "FRANCE":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("EUR"));
-        break;
-      case "FRENCH":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("EUR"));
-        break;
-      case "DE":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("EUR"));
-        break;
-      case "GERMAN":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("EUR"));
-        break;
-      case "GERMANY":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("EUR"));
-        break;
-      case "ITALIAN":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("EUR"));
-        break;
-      case "ITALY":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("EUR"));
-        break;
-      case "JAPAN":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("JPY"));
-        break;
-      case "JAPANESE":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("JPY"));
-        break;
-      case "KOREA":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("KRW"));
-        break;
-      case "KOREAN":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("KRW"));
-        break;
-      case "PRC":
-        exchangeRate = BigDecimal.valueOf(1.0);
-        break;
-      case "PRIVATE_USE_EXTENSION":
-        exchangeRate = BigDecimal.valueOf(1.0);
-        break;
-      case "ROOT":
-        exchangeRate = BigDecimal.valueOf(1.0);
-        break;
-      case "SIMPLIFIED_CHINESE":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("CNY"));
-        break;
-      case "TAIWAN":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("TWD"));
-        break;
-      case "UK":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("GBP"));
-        break;
-      case "UNICODE_LOCALE_EXTENSION":
-        exchangeRate = BigDecimal.valueOf(1.0);
-        break;
-      case "US":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("USD"));
-        break;
-    }
-
-    marketSummary.setTradeStockIndexAverage((tradeStockIndexAverage.multiply(exchangeRate))
-        .setScale(FinancialUtils.SCALE, FinancialUtils.ROUND));
-    marketSummary.setTradeStockIndexOpenAverage((tradeStockIndexOpenAverage.multiply(exchangeRate))
-        .setScale(FinancialUtils.SCALE, FinancialUtils.ROUND));
-  }
 }
