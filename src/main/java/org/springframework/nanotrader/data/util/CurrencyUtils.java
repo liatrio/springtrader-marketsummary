@@ -42,7 +42,7 @@ public class CurrencyUtils {
     } catch(Exception e) {}
 
 
-    BigDecimal exchangeRate = findExchangeRate(country);
+    BigDecimal exchangeRate = findExchangeRate(country, rates);
 
     marketSummary.setTradeStockIndexAverage((tradeStockIndexAverage.multiply(exchangeRate))
         .setScale(FinancialUtils.SCALE, FinancialUtils.ROUND));
@@ -52,7 +52,7 @@ public class CurrencyUtils {
     return marketSummary;
   }
 
-  public static BigDecimal findExchangeRate(String country) {
+  public static BigDecimal findExchangeRate(String country, JSONObject rates) {
 
     BigDecimal exchangeRate;
     

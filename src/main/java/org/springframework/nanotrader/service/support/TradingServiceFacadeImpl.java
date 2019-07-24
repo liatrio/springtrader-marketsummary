@@ -15,8 +15,6 @@
 */
 package org.springframework.nanotrader.service.support;
 
-import java.lang.*;
-import java.util.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +22,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import java.math.BigDecimal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +33,6 @@ import org.springframework.nanotrader.data.domain.MarketSummary;
 import org.springframework.nanotrader.data.domain.Quote;
 import org.springframework.nanotrader.data.repository.MarketSummaryRepository;
 import org.springframework.nanotrader.data.repository.QuoteRepository;
-import org.springframework.nanotrader.data.util.FinancialUtils;
 import org.springframework.stereotype.Service;
 
 /**
