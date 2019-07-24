@@ -2,9 +2,9 @@
 apiVersion: flagger.app/v1alpha3
 kind: Canary
 metadata:
-  name: {{ .Chart.Name }}
+  name: {{ .Chart.Name }}-app
   labels:
-    app: {{ .Chart.Name }}
+    app: {{ .Chart.Name }}-app
     version: {{ .Values.version }}  
 spec:
   provider: istio
@@ -12,7 +12,7 @@ spec:
   targetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ .Chart.Name }}
+    name: {{ .Chart.Name }}-app
   # the maximum time in seconds for the canary deployment
   # to make progress before it is rollback (default 600s)
   progressDeadlineSeconds: {{ .Values.canary.progressDeadlineSeconds }}
@@ -20,7 +20,7 @@ spec:
   autoscalerRef:
     apiVersion: autoscaling/v2beta1
     kind: HorizontalPodAutoscaler
-    name: {{ .Chart.Name }}
+    name: {{ .Chart.Name }}-app
   {{- end }}  
   service:
     # container port
@@ -69,11 +69,11 @@ spec:
         url: {{ .Values.canary.loadtest.url }}
         timeout: 5s
         metadata:
-          cmd: "hey -z 1m -q 5 -c 2 http://{{ .Chart.Name }}:{{ .Values.service.port }}"
+          cmd: "hey -z 1m -q 5 -c 2 http://{{ .Chart.Name }}-app:{{ .Values.service.port }}"
       - name: load-test-post
         url: {{ .Values.canary.loadtest.url }}
         timeout: 5s
         metadata:
-          cmd: "hey -z 1m -q 5 -c 2 -m POST -d '{\"test\": true}' http://{{ .Chart.Name }}:{{ .Values.service.port }}/echo"
+          cmd: "hey -z 1m -q 5 -c 2 -m POST -d '{\"test\": true}' http://{{ .Chart.Name }}-app:{{ .Values.service.port }}/echo"
     {{- end }}
 {{- end }}

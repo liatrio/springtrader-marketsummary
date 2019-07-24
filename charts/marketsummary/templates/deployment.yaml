@@ -17,7 +17,7 @@ spec:
         version: {{ .Values.version }}
     spec:
       containers:
-      - name: {{ .Chart.Name }}
+      - name: {{ .Chart.Name }}-app
         image: {{ .Values.image }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
