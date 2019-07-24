@@ -34,8 +34,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 /**
  *  MarketSummaryControllerTest tests the MarketSummary REST api
- *  
- *  @author Brian Dussault 
+ *
+ *  @author Brian Dussault
  *  @author
  */
 @RunWith(SpringRunner.class)
@@ -52,8 +52,7 @@ public class MarketSummaryControllerTest {
 
 	@Test
 	public void getMarketSummaryJson() throws Exception {
-		mockMvc.perform(get("/marketSummary").header("Accept-Language", "en-US")
-        .accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/marketSummary").header("Accept-Language", "en-US").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(jsonPath("$.tradeStockIndexAverage").value(MARKET_INDEX.doubleValue()))
@@ -62,5 +61,5 @@ public class MarketSummaryControllerTest {
 				.andExpect(jsonPath("$.percentGain").value(new BigDecimal(0).doubleValue()))
 				.andDo(print());
 	}
-	
+
 }

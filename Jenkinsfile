@@ -6,14 +6,14 @@ pipeline {
     stage('Build') {
       steps {
         container('skaffold') {
-          sh "skaffold build --quiet > image.json"
+          sh "skaffold build --file-output=image.json"
         }
       }
     }
     stage ('Deploy to Staging') {
       environment {
         TILLER_NAMESPACE = "${env.stagingNamespace}"
-        ISTIO_DOMAIN = "${env.stagingDomain}"
+        ISTIO_DOMAIN   = "${env.stagingDomain}"
       }
       steps {
         container('skaffold') {
@@ -24,9 +24,6 @@ pipeline {
     stage ('Manual Ready Check') {
       when {
         branch 'master'
-      }
-      options {
-        timeout(time: 30, unit: 'MINUTES')
       }
       input {
         message 'Deploy to Production?'
@@ -41,7 +38,7 @@ pipeline {
       }
       environment {
         TILLER_NAMESPACE = "${env.productionNamespace}"
-        ISTIO_DOMAIN = "${env.productionDomain}"
+        ISTIO_DOMAIN   = "${env.productionDomain}"
       }
       steps {
         container('skaffold') {
