@@ -15,6 +15,7 @@
  */
 package org.springframework.nanotrader.web.controller;
 
+import java.util.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.nanotrader.data.domain.MarketSummary;
@@ -32,8 +33,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class MarketSummaryController extends BaseController {
 
 	@RequestMapping(value = "/marketSummary", method = RequestMethod.GET)
-	public ResponseEntity<MarketSummary> findMarketSummary() {
-		return new ResponseEntity<MarketSummary>(getTradingServiceFacade().findMarketSummary(), getNoCacheHeaders(),
+	public ResponseEntity<MarketSummary> findMarketSummary(Locale locale) {
+
+		return new ResponseEntity<MarketSummary>(getTradingServiceFacade().findMarketSummary(locale), getNoCacheHeaders(),
 				HttpStatus.OK);
 	}
 

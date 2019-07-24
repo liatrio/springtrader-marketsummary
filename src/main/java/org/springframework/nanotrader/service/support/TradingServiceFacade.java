@@ -15,6 +15,7 @@
  */
 package org.springframework.nanotrader.service.support;
 
+import java.util.*;
 import org.springframework.nanotrader.data.domain.MarketSummary;
 
 /**
@@ -23,7 +24,7 @@ import org.springframework.nanotrader.data.domain.MarketSummary;
  */
 public interface TradingServiceFacade {
 
-	MarketSummary findMarketSummary();
+	MarketSummary findMarketSummary(Locale locale);
 
 }
 
