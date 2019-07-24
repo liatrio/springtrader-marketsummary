@@ -14,6 +14,11 @@ service:
   type: ClusterIP
   port: 80
 
+canary:
+  enabled: false
+
+istioDomain: ""
+  
 ingress:
   enabled: false
   annotations: {}
