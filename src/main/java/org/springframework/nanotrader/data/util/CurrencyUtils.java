@@ -107,9 +107,6 @@ public class CurrencyUtils {
       case "Egypt":
         exchangeRate = BigDecimal.valueOf(rates.getDouble("EGP"));
         break;
-      case "Euro":
-        exchangeRate = BigDecimal.valueOf(rates.getDouble("EUR"));
-        break;
       case "France":
         exchangeRate = BigDecimal.valueOf(rates.getDouble("EUR"));
         break;
