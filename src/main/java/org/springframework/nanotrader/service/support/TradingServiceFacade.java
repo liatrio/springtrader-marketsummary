@@ -15,7 +15,6 @@
  */
 package org.springframework.nanotrader.service.support;
 
-import java.util.*;
 import org.springframework.nanotrader.data.domain.MarketSummary;
 
 /**
