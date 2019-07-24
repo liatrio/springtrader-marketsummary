@@ -61,5 +61,5 @@ public class MarketSummaryControllerTest {
 				.andExpect(jsonPath("$.percentGain").value(new BigDecimal(0).doubleValue()))
 				.andDo(print());
 	}
-      
+        
 }
