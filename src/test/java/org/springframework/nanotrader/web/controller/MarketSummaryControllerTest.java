@@ -52,7 +52,8 @@ public class MarketSummaryControllerTest {
 
 	@Test
 	public void getMarketSummaryJson() throws Exception {
-		mockMvc.perform(get("/marketSummary").accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/marketSummary").header("Accept-Language", "en-US")
+        .accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(jsonPath("$.tradeStockIndexAverage").value(MARKET_INDEX.doubleValue()))

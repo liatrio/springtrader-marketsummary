@@ -104,7 +104,8 @@ public class TradingServiceFacadeImpl implements TradingServiceFacade {
     BigDecimal tradeStockIndexAverage = marketSummary.getTradeStockIndexAverage();
     BigDecimal tradeStockIndexOpenAverage = marketSummary.getTradeStockIndexOpenAverage();
 
-    BigDecimal exchangeRate = new BigDecimal(1.0);
+    //BigDecimal exchangeRate = new BigDecimal(1.0);
+    BigDecimal exchangeRate = null;
 
     String content = "";
     JSONObject rates = null;
@@ -131,6 +132,7 @@ public class TradingServiceFacadeImpl implements TradingServiceFacade {
 
 
 
+    System.out.println(country);
     switch(country) {
       case "CANADA":
         exchangeRate = BigDecimal.valueOf(rates.getDouble("CAD"));
@@ -151,6 +153,9 @@ public class TradingServiceFacadeImpl implements TradingServiceFacade {
         exchangeRate = BigDecimal.valueOf(rates.getDouble("EUR"));
         break;
       case "FRENCH":
+        exchangeRate = BigDecimal.valueOf(rates.getDouble("EUR"));
+        break;
+      case "DE":
         exchangeRate = BigDecimal.valueOf(rates.getDouble("EUR"));
         break;
       case "GERMAN":
