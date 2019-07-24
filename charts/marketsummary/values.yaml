@@ -55,7 +55,8 @@ canary:
     # load tester address
     url: http://flagger-loadtester.test/
 
-
+istioDomain: ""
+  
 ingress:
   enabled: false
   annotations: {}
