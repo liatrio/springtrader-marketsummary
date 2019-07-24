@@ -54,8 +54,7 @@ public class CurrencyUtils {
 
   public static BigDecimal findExchangeRate(String country) {
 
-    BigDecimal exchangeRate = new BigDecimal(1.0);
-    //BigDecimal exchangeRate;
+    BigDecimal exchangeRate;
     
     switch(country) {
       case "United States":
