@@ -1,16 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: marketsummary-app
+  name: marketsummary
+  version: {{ .Values.version }}
 spec:
-    selector:
-      matchLabels:
-        app: marketsummary-app
-    template:
-      metadata:
-        labels:
-            app: marketsummary-app
-      spec:
-        containers:
-        - name: marketsummary
-          image: {{ .Values.image }}
+  selector:
+    matchLabels:
+      app: marketsummary
+  template:
+    metadata:
+      labels:
+        app: marketsummary
+        version: {{ .Values.version }}
+    spec:
+      containers:
+      - name: marketsummary
+        image: {{ .Values.image }}
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 5
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "128m"
+          limits:
+            memory: "768Mi"
+            cpu: "1"

@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image: marketsummary:latest
-
+version: "0.0.1-SNAPSHOT" 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -13,6 +13,11 @@ fullnameOverride: ""
 service:
   type: ClusterIP
   port: 80
+
+canary:
+  enabled: false
+
+istioDomain: ""
 
 ingress:
   enabled: false
@@ -45,7 +50,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-istio:
-  enabled: true
-  domain: local
