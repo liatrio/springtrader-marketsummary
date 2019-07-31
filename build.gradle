@@ -12,11 +12,9 @@ sourceCompatibility = '1.8'
 repositories {
 	mavenCentral()
   maven { url 'https://repo.spring.io/plugins-release/' }
-  maven { url 'https://mvnrepository.com/artifact/org.json/json' }
 }
 
 dependencies {
-  implementation group: 'org.json', name: 'json', version: '20180813'
 	implementation "org.springframework.boot:spring-boot-starter"
   implementation 'org.springframework.boot:spring-boot-starter-web'
   implementation 'org.springframework.boot:spring-boot-starter-actuator'
