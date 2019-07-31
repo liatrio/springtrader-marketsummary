@@ -32,12 +32,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class MarketSummaryController extends BaseController {
 
 	@RequestMapping(value = "/marketSummary", method = RequestMethod.GET)
-	public ResponseEntity<MarketSummary> findMarketSummary(Locale locale) {
-    public ResponseEntity<MarketSummary> findMarketSummary() {
-      return new ResponseEntity<MarketSummary>(getTradingServiceFacade().findMarketSummary(), getNoCacheHeaders(),
-                                               HttpStatus.OK);
-    }
-	}
+  public ResponseEntity<MarketSummary> findMarketSummary() {
+    return new ResponseEntity<MarketSummary>(getTradingServiceFacade().findMarketSummary(), getNoCacheHeaders(),
+                                             HttpStatus.OK);
+  }
 
 	@RequestMapping(value = "/marketSummary", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
