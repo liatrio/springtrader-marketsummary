@@ -43,3 +43,14 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
+
+{{/*
+Create chart name suffix.
+*/}}
+{{- define "marketsummary.suffix" -}}
+{{- if .Values.canary.enabled -}}
+{{- "-primary" -}}
+{{- else -}}
+{{- "" -}}
+{{- end -}}
+{{- end -}}

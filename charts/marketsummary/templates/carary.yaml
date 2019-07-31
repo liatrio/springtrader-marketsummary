@@ -1,0 +1,79 @@
+{{- if .Values.canary.enabled }}
+apiVersion: flagger.app/v1alpha3
+kind: Canary
+metadata:
+  name: {{ .Chart.Name }}-app
+  labels:
+    app: {{ .Chart.Name }}-app
+    version: {{ .Values.version }}  
+spec:
+  provider: istio
+  # deployment reference
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ .Chart.Name }}-app
+  # the maximum time in seconds for the canary deployment
+  # to make progress before it is rollback (default 600s)
+  progressDeadlineSeconds: {{ .Values.canary.progressDeadlineSeconds }}
+  {{- if .Values.hpa.enabled }}  
+  autoscalerRef:
+    apiVersion: autoscaling/v2beta1
+    kind: HorizontalPodAutoscaler
+    name: {{ .Chart.Name }}-app
+  {{- end }}  
+  service:
+    # container port
+    port: {{ .Values.service.port }}
+    {{- if .Values.canary.istioIngress.enabled }}
+    gateways:
+    - {{ .Chart.Name }}-gateway
+    hosts:
+    - {{ .Chart.Name }}.{{ .Values.istioDomain }}
+    {{- end }}
+    # Istio traffic policy (optional)
+    trafficPolicy:
+      tls:
+        # use ISTIO_MUTUAL when mTLS is enabled
+        mode: DISABLE
+    # HTTP match conditions (optional)
+    match:
+      - uri:
+          prefix: /spring-nanotrader-services/api/marketSummary
+    # HTTP rewrite (optional)
+    rewrite:
+      uri: /marketSummary    
+    # HTTP timeout (optional)
+    timeout: 30s
+  # promote the canary without analysing it (default false)
+  skipAnalysis: false
+  canaryAnalysis:
+    interval: {{ .Values.canary.analysis.interval }}
+    threshold: {{ .Values.canary.analysis.threshold }}
+    maxWeight: {{ .Values.canary.analysis.maxWeight }}
+    stepWeight: {{ .Values.canary.analysis.stepWeight }}
+    metrics:
+    {{- if .Values.canary.metrics.successRate }}    
+    - name: {{ .Values.canary.metrics.successRate }}
+      threshold: {{ .Values.canary.thresholds.successRate }}
+      interval: 1m
+    {{- end }}
+    {{- if .Values.canary.metrics.latency }}    
+    - name: {{ .Values.canary.metrics.latency }}
+      threshold: {{ .Values.canary.thresholds.latency }}
+      interval: 1m
+    {{- end }}
+    {{- if .Values.canary.loadtest.enabled }}
+    webhooks:
+      - name: load-test-get
+        url: {{ .Values.canary.loadtest.url }}
+        timeout: 5s
+        metadata:
+          cmd: "hey -z 1m -q 5 -c 2 http://{{ .Chart.Name }}-app:{{ .Values.service.port }}"
+      - name: load-test-post
+        url: {{ .Values.canary.loadtest.url }}
+        timeout: 5s
+        metadata:
+          cmd: "hey -z 1m -q 5 -c 2 -m POST -d '{\"test\": true}' http://{{ .Chart.Name }}-app:{{ .Values.service.port }}/echo"
+    {{- end }}
+{{- end }}

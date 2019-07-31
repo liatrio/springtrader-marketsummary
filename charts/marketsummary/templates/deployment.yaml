@@ -1,20 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: marketsummary
+  name: {{ .Chart.Name }}-app
   version: {{ .Values.version }}
+  labels:
+    app: {{ .Chart.Name }}-app
+    version: {{ .Values.version }}  
 spec:
   selector:
     matchLabels:
-      app: marketsummary
+      app: {{ .Chart.Name }}-app
   template:
     metadata:
       labels:
-        app: marketsummary
+        app: {{ .Chart.Name }}-app
         version: {{ .Values.version }}
     spec:
       containers:
-      - name: marketsummary
+      - name: {{ .Chart.Name }}-app
         image: {{ .Values.image }}
         livenessProbe:
           httpGet:
@@ -29,9 +32,16 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 5
         resources:
-          requests:
-            memory: "512Mi"
-            cpu: "128m"
-          limits:
-            memory: "768Mi"
-            cpu: "1"
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
