@@ -27,9 +27,9 @@ spec:
     port: {{ .Values.service.port }}
     {{- if .Values.canary.istioIngress.enabled }}
     gateways:
-    - {{ .Chart.Name }}-gateway
+    - springtrader-gateway
     hosts:
-    - {{ .Chart.Name }}.{{ .Values.istioDomain }}
+    - springtrader.{{ .Values.istioDomain }}
     {{- end }}
     # Istio traffic policy (optional)
     trafficPolicy:
@@ -53,16 +53,40 @@ spec:
     maxWeight: {{ .Values.canary.analysis.maxWeight }}
     stepWeight: {{ .Values.canary.analysis.stepWeight }}
     metrics:
-    {{- if .Values.canary.metrics.successRate }}    
-    - name: {{ .Values.canary.metrics.successRate }}
-      threshold: {{ .Values.canary.thresholds.successRate }}
+    - name: "200 response code rate"
+      threshold: 10
       interval: 1m
-    {{- end }}
-    {{- if .Values.canary.metrics.latency }}    
-    - name: {{ .Values.canary.metrics.latency }}
-      threshold: {{ .Values.canary.thresholds.latency }}
-      interval: 1m
-    {{- end }}
+      query: |
+        sum(
+          rate(
+              istio_requests_total{
+                reporter="source",
+                destination_workload_namespace=~"guzchat-staging",
+                destination_workload=~"marketsummary-app-primary",
+                response_code!~"5.*"
+              }[1m]
+          )
+        )
+        /
+        sum(
+            rate(
+                istio_requests_total{
+                  reporter="source",
+                  destination_workload_namespace=~"guzchat-staging",
+                  destination_workload=~"marketsummary-app-primary",
+                }[1m]
+            )
+        )
+      #    {{- if .Values.canary.metrics.successRate }}    
+      #    - name: {{ .Values.canary.metrics.successRate }}
+      #      threshold: {{ .Values.canary.thresholds.successRate }}
+      #      interval: 1m
+      #    {{- end }}
+      #    {{- if .Values.canary.metrics.latency }}    
+      #    - name: {{ .Values.canary.metrics.latency }}
+      #      threshold: {{ .Values.canary.thresholds.latency }}
+      #      interval: 1m
+      #    {{- end }}
     {{- if .Values.canary.loadtest.enabled }}
     webhooks:
       - name: load-test-get

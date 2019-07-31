@@ -16,7 +16,7 @@ spec:
       uri: /marketSummary
     route:
     - destination:
-        host: marketsummary
+        host: marketsummary-app
         port:
           number: 8080
 {{- end }}
