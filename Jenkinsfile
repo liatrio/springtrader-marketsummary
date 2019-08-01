@@ -28,9 +28,9 @@ pipeline {
       agent {
         label "lead-toolchain-skaffold"
       }
-      //when {
-      //    branch 'master'
-      //}
+      when {
+          branch 'master'
+      }
       environment {
         TILLER_NAMESPACE = "${env.stagingNamespace}"
         ISTIO_DOMAIN   = "${env.stagingDomain}"
@@ -57,12 +57,12 @@ pipeline {
       when {
         branch 'master'
       }
-      //options {
-      //  timeout(time: 30, unit: 'MINUTES')
-      //}
-      //input {
-      //  message 'Deploy to Production?'
-      //}
+      options {
+        timeout(time: 30, unit: 'MINUTES')
+      }
+      input {
+        message 'Deploy to Production?'
+      }
       steps {
         echo "Deploying"
       }
