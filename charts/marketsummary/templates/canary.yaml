@@ -60,8 +60,8 @@ spec:
           rate(
               istio_requests_total{
                 response_code!~"5.*"
-                destination_service_namespace=~"{{ Release.Namespace }}",
-                destination_service=~"marketsummary-app-canary.{{ Release.Namespace }}.svc.cluster.local",
+                destination_service_namespace=~"{{ .Release.Namespace }}",
+                destination_service=~"marketsummary-app-canary.{{ .Release.Namespace }}.svc.cluster.local",
               }[1m]
           )
         )
@@ -69,8 +69,8 @@ spec:
         sum(
             rate(
                 istio_requests_total{
-                destination_service_namespace=~"{{ Release.Namespace }}",
-                destination_service=~"marketsummary-app-canary.{{ Release.Namespace }}.svc.cluster.local",
+                destination_service_namespace=~"{{ .Release.Namespace }}",
+                destination_service=~"marketsummary-app-canary.{{ .Release.Namespace }}.svc.cluster.local",
                 }[1m]
             )
         )
