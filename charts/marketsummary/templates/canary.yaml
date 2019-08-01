@@ -54,14 +54,13 @@ spec:
     stepWeight: {{ .Values.canary.analysis.stepWeight }}
     metrics:
     - name: "200 response code rate"
-      threshold: 10
+      threshold: 5
       query: |
-        sum(
+        100 - sum(
           rate(
               istio_requests_total{
-                response_code!~"5.*"
-                destination_service_namespace=~"{{ .Release.Namespace }}",
                 destination_service=~"marketsummary-app-canary.{{ .Release.Namespace }}.svc.cluster.local",
+                response_code!~"5.*"
               }[1m]
           )
         )
@@ -69,11 +68,10 @@ spec:
         sum(
             rate(
                 istio_requests_total{
-                destination_service_namespace=~"{{ .Release.Namespace }}",
                 destination_service=~"marketsummary-app-canary.{{ .Release.Namespace }}.svc.cluster.local",
                 }[1m]
             )
-        )
+        ) * 100
       #    {{- if .Values.canary.metrics.successRate }}    
       #    - name: {{ .Values.canary.metrics.successRate }}
       #      threshold: {{ .Values.canary.thresholds.successRate }}
