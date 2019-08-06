@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Chart.Name }}-app
+  name: {{ .Chart.Name }}
   version: {{ .Values.version }}
   labels:
-    app: {{ .Chart.Name }}-app
+    app: {{ .Chart.Name }}
     version: {{ .Values.version }}  
 spec:
   selector:
     matchLabels:
-      app: {{ .Chart.Name }}-app
+      app: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: {{ .Chart.Name }}-app
+        app: {{ .Chart.Name }}
         version: {{ .Values.version }}
     spec:
       containers:
-      - name: {{ .Chart.Name }}-app
+      - name: {{ .Chart.Name }}
         image: {{ .Values.image }}
         livenessProbe:
           httpGet:
