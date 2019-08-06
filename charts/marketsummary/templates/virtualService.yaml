@@ -1,0 +1,22 @@
+{{- if and (not .Values.canary.enabled) (not (eq .Values.istioDomain "")) -}}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  gateways:
+  - springtrader-gateway
+  hosts:
+  - springtrader.{{ .Values.istioDomain }}
+  http:
+  - match:
+    - uri:
+       prefix: /spring-nanotrader-services/api/marketSummary
+    rewrite:
+      uri: /marketSummary
+    route:
+    - destination:
+        host: marketsummary
+        port:
+          number: 8080
+{{- end }}
