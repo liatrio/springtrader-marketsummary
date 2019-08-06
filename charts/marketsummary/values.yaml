@@ -25,7 +25,7 @@ hpa:
 
 canary:
   enabled: false
-  progressDeadlineSeconds: 60
+  progressDeadlineSeconds: 90
   istioIngress:
     enabled: true
   analysis:
@@ -38,7 +38,7 @@ canary:
     maxWeight: 50
     # canary increment step
     # percentage (0-100)
-    stepWeight: 5  
+    stepWeight: 10  
   # names of metrics
   metrics:
     successRate: request-success-rate
