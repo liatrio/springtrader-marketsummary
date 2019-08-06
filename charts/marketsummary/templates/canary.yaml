@@ -72,16 +72,6 @@ spec:
                 }[1m]
             )
         ) * 100
-      #    {{- if .Values.canary.metrics.successRate }}    
-      #    - name: {{ .Values.canary.metrics.successRate }}
-      #      threshold: {{ .Values.canary.thresholds.successRate }}
-      #      interval: 1m
-      #    {{- end }}
-      #    {{- if .Values.canary.metrics.latency }}    
-      #    - name: {{ .Values.canary.metrics.latency }}
-      #      threshold: {{ .Values.canary.thresholds.latency }}
-      #      interval: 1m
-      #    {{- end }}
     {{- if .Values.canary.loadtest.enabled }}
     webhooks:
       - name: load-test-get
