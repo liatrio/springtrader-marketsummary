@@ -53,8 +53,8 @@ spec:
     maxWeight: {{ .Values.canary.analysis.maxWeight }}
     stepWeight: {{ .Values.canary.analysis.stepWeight }}
     metrics:
-    - name: "200 response code rate"
-      threshold: 5
+    - name: "500 error rate"
+      threshold: {{ .Values.canary.analysis.threshold }}
       query: |
         100 - sum(
           rate(
