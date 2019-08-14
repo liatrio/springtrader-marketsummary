@@ -9,10 +9,11 @@ version: "0.0.1-SNAPSHOT"
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+workload: springtrader
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8080
 
 canary:
   enabled: false

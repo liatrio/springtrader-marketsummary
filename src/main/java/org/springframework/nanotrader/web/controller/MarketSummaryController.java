@@ -31,15 +31,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Controller
 public class MarketSummaryController extends BaseController {
 
-	@RequestMapping(value = "/marketSummary", method = RequestMethod.GET)
+  @RequestMapping(value = "/marketSummary", method = RequestMethod.GET)
   public ResponseEntity<MarketSummary> findMarketSummary() {
     return new ResponseEntity<MarketSummary>(getTradingServiceFacade().findMarketSummary(), getNoCacheHeaders(),
                                              HttpStatus.OK);
   }
 
-	@RequestMapping(value = "/marketSummary", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
-	public void post() {
-	}
+  @RequestMapping(value = "/marketSummary", method = RequestMethod.POST)
+  @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+  public void post() {
+  }
 
 }

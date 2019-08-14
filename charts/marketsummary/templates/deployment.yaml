@@ -19,6 +19,9 @@ spec:
       containers:
       - name: {{ .Chart.Name }}
         image: {{ .Values.image }}
+        env:
+        - name: OPENTRACING_JAEGER_SERVICE_NAME
+          value: marketsummary.{{ .Release.Namespace }}
         livenessProbe:
           httpGet:
             path: /actuator/health

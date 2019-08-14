@@ -12,6 +12,7 @@ pipeline {
         container('skaffold') {
           sh "skaffold build --file-output=image.json"
           stash includes: 'image.json', name: 'build'
+          sh "rm image.json"
         }
       }
       post {
@@ -19,7 +20,7 @@ pipeline {
           notifyStageEnd()
         }
         failure {
-          notifyStageEnd([result: "Build Failed"])
+          notifyStageEnd([result: "fail"])
         }
       }
     }
@@ -44,10 +45,10 @@ pipeline {
       }
       post {
         success {
-          notifyStageEnd([status: "Successfully deployed to staging:\nspringtrader.${env.stagingDomain}/spring-nanotrader-web/"])
+          notifyStageEnd([status: "Successfully deployed to staging:\nspringtrader.${env.stagingDomain}/spring-nanotrader-services/api/marketSummary"])
         }
         failure {
-          notifyStageEnd([result: "Deploy failed"])
+          notifyStageEnd([result: "fail"])
         }
       }
     }
@@ -88,7 +89,7 @@ pipeline {
       }
       post {
         success {
-          notifyStageEnd([status: "Successfully deployed to production:\nspringtrader.${env.productionNamespace}/spring-nanotrader-web/"])
+          notifyStageEnd([status: "Successfully deployed to production:\nspringtrader.${env.productionDomain}/spring-nanotrader-services/api/marketSummary"])
         }
         failure {
           notifyStageEnd([result: "fail"])
