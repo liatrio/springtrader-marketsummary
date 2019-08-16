@@ -12,6 +12,7 @@ pipeline {
         container('skaffold') {
           sh "skaffold build --file-output=image.json"
           stash includes: 'image.json', name: 'build'
+          sh "rm image.json"
         }
       }
       post {
