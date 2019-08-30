@@ -2,12 +2,15 @@ library 'LEAD'
 pipeline {
   agent none
   stages {
+    stage('Initialization'){ 
+      agent {label 'master'}
+      steps {notifyPipelineStart()}
+    }
     stage('Build') {
       agent {
         label "lead-toolchain-skaffold"
       }
       steps {
-        notifyPipelineStart()
         notifyStageStart()
         container('skaffold') {
           sh "skaffold build --file-output=image.json"
