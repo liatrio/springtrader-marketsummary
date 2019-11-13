@@ -1,4 +1,3 @@
-library 'LEAD'
 pipeline {
   agent none
   stages {
