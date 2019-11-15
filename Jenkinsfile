@@ -65,7 +65,7 @@ pipeline {
         container('skaffold') {
           unstash 'build'
           sh "skaffold deploy -a image.json -n ${TILLER_NAMESPACE}"
-          stageMessage "Successfully deployed to staging:\nspringtrader.${env.stagingDomain}/spring-nanotrader-services/api/marketSummary"
+          stageMessage "Successfully deployed to production:\nspringtrader.${env.productionDomain}/spring-nanotrader-services/api/marketSummary"
         }
       }
     }
