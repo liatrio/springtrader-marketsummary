@@ -14,3 +14,5 @@ deploy:
           image: marketsummary
         setValueTemplates:
           istioDomain: "{{.ISTIO_DOMAIN}}"
+        setValues:
+          hpa.enabled: true
