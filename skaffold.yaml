@@ -12,8 +12,8 @@ deploy:
         chartPath: ./charts/marketsummary
         values:
           image: marketsummary
+        setValueTemplates:
+          istioDomain: "{{.ISTIO_DOMAIN}}"
         setValues:
           hpa.enabled: true
           canary.enabled: true
-        setValueTemplates:
-          istioDomain: "{{.ISTIO_DOMAIN}}"
