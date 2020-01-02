@@ -53,25 +53,9 @@ spec:
     maxWeight: {{ .Values.canary.analysis.maxWeight }}
     stepWeight: {{ .Values.canary.analysis.stepWeight }}
     metrics:
-    - name: "500 error rate"
-      threshold: {{ .Values.canary.analysis.threshold }}
-      query: |
-        100 - sum(
-          rate(
-              istio_requests_total{
-                destination_service=~"marketsummary-canary.{{ .Release.Namespace }}.svc.cluster.local",
-                response_code!~"5.*"
-              }[1m]
-          )
-        )
-        /
-        sum(
-            rate(
-                istio_requests_total{
-                destination_service=~"marketsummary-canary.{{ .Release.Namespace }}.svc.cluster.local",
-                }[1m]
-            )
-        ) * 100
+      - name: request-success-rate
+        threshold: 99
+        interval: 1m
     {{- if .Values.canary.loadtest.enabled }}
     webhooks:
       - name: load-test-get
