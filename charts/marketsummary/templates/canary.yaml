@@ -27,9 +27,9 @@ spec:
     port: {{ .Values.service.port }}
     {{- if .Values.canary.istioIngress.enabled }}
     gateways:
-    - springtrader-gateway
+    - istio-system/app-gateway
     hosts:
-    - springtrader.{{ .Values.istioDomain }}
+    - springtrader-{{ .Release.Namespace }}.{{ .Values.istioDomain }}
     {{- end }}
     # Istio traffic policy (optional)
     trafficPolicy:
