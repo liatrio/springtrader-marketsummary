@@ -5,9 +5,9 @@ metadata:
   name: {{ .Chart.Name }}
 spec:
   gateways:
-  - springtrader-gateway
+  - istio-system/app-gateway
   hosts:
-  - springtrader.{{ .Values.istioDomain }}
+  - springtrader-{{ .Release.Namespace }}.{{ .Values.istioDomain }}
   http:
   - match:
     - uri:
