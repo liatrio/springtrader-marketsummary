@@ -5,7 +5,7 @@ metadata:
   name: {{ .Chart.Name }}
   labels:
     app: {{ .Chart.Name }}
-    version: {{ .Values.version }}  
+    version: {{ .Values.version }}
 spec:
   provider: istio
   # deployment reference
@@ -16,12 +16,12 @@ spec:
   # the maximum time in seconds for the canary deployment
   # to make progress before it is rollback (default 600s)
   progressDeadlineSeconds: {{ .Values.canary.progressDeadlineSeconds }}
-  {{- if .Values.hpa.enabled }}  
+  {{- if .Values.hpa.enabled }}
   autoscalerRef:
     apiVersion: autoscaling/v2beta1
     kind: HorizontalPodAutoscaler
     name: {{ .Chart.Name }}
-  {{- end }}  
+  {{- end }}
   service:
     # container port
     port: {{ .Values.service.port }}
@@ -29,7 +29,7 @@ spec:
     gateways:
     - istio-system/app-gateway
     hosts:
-    - springtrader-{{ .Release.Namespace }}.{{ .Values.istioDomain }}
+    - springtrader.{{ .Values.productName }}.{{ .Values.istioDomain }}
     {{- end }}
     # Istio traffic policy (optional)
     trafficPolicy:
@@ -42,7 +42,7 @@ spec:
           prefix: /spring-nanotrader-services/api/marketSummary
     # HTTP rewrite (optional)
     rewrite:
-      uri: /marketSummary    
+      uri: /marketSummary
     # HTTP timeout (optional)
     timeout: 30s
   # promote the canary without analysing it (default false)

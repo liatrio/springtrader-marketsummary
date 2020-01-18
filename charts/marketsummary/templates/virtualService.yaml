@@ -7,7 +7,7 @@ spec:
   gateways:
   - istio-system/app-gateway
   hosts:
-  - springtrader-{{ .Release.Namespace }}.{{ .Values.istioDomain }}
+  - springtrader.{{ .Values.productName }}.{{ .Values.istioDomain }}
   http:
   - match:
     - uri:
