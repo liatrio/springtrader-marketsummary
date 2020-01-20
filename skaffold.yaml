@@ -14,3 +14,4 @@ deploy:
           image: marketsummary
         setValueTemplates:
           istioDomain: "{{.ISTIO_DOMAIN}}"
+          productName: "{{.PRODUCT_NAME}}"
