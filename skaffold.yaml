@@ -11,6 +11,6 @@ deploy:
         wait: true
         chartPath: ./charts/marketsummary
         values:
-          image: marketsummary
         setValueTemplates:
           istioDomain: "{{.ISTIO_DOMAIN}}"
+          productName: "{{.PRODUCT_NAME}}"
