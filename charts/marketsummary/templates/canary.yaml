@@ -29,7 +29,7 @@ spec:
     gateways:
     - istio-system/app-gateway
     hosts:
-    - springtrader.{{ .Values.productName }}.{{ .Values.istioDomain }}
+    - springtrader-{{ .Values.productName }}.{{ .Values.istioDomain }}
     {{- end }}
     # Istio traffic policy (optional)
     trafficPolicy:
