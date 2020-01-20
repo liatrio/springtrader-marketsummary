@@ -59,6 +59,7 @@ pipeline {
           branch 'master'
       }
       environment {
+      TILLER_NAMESPACE = "${env.productionNamespace}"
         ISTIO_DOMAIN   = "${env.productionDomain}"
         PRODUCT_NAME = "${env.product}"
       }
