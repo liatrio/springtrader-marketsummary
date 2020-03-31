@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Chart.Name }}
-  version: {{ .Values.version }}
   labels:
     app: {{ .Chart.Name }}
     version: {{ .Values.version }}  
