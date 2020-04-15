@@ -6,7 +6,7 @@ phases:
       - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
   pre_build:
     commands:
-      -  aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin 774051255656.dkr.ecr.us-east-1.amazonaws.com
+      -  aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $PRODUCT_IMAGE_REPO
   build:
     commands:
       - skaffold build --file-output=image.json --tag $CODEBUILD_RESOLVED_SOURCE_VERSION
