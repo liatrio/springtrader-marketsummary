@@ -1,0 +1,8 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - aws eks update-kubeconfig --name $CLUSTER
+  build:
+    commands:
+      - skaffold deploy -a image.json -n $STAGING_NAMESPACE
