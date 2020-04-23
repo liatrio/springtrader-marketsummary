@@ -1,0 +1,20 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2&
+      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+  pre_build:
+    commands:
+      -  aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $PRODUCT_IMAGE_REPO
+  build:
+    commands:
+      - skaffold build --file-output=image.json --tag $CODEBUILD_RESOLVED_SOURCE_VERSION
+artifacts:
+  files:
+    - image.json
+    - skaffold.yaml
+    - buildspec-staging.yaml
+    - buildspec-prod.yaml
+    - charts/**/*
+
