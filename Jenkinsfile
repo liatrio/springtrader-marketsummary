@@ -22,14 +22,14 @@ pipeline {
           branch 'master'
       }
       environment {
-        TILLER_NAMESPACE = "${env.stagingNamespace}"
+        NAMESPACE    = "${env.stagingNamespace}"
         ISTIO_DOMAIN = "${env.stagingDomain}"
         PRODUCT_NAME = "${env.product}"
       }
       steps {
         container('skaffold') {
           unstash 'build'
-          sh "skaffold deploy -a image.json -n ${TILLER_NAMESPACE}"
+          sh "skaffold deploy -a image.json -n ${NAMESPACE}"
           stageMessage "Successfully deployed to staging:\nspringtrader-${env.product}.${env.stagingDomain}/spring-nanotrader-services/api/marketSummary"
         }
       }
@@ -59,14 +59,14 @@ pipeline {
           branch 'master'
       }
       environment {
-        TILLER_NAMESPACE = "${env.productionNamespace}"
+        NAMESPACE    = "${env.productionNamespace}"
         ISTIO_DOMAIN = "${env.productionDomain}"
         PRODUCT_NAME = "${env.product}"
       }
       steps {
         container('skaffold') {
           unstash 'build'
-          sh "skaffold deploy -a image.json -n ${TILLER_NAMESPACE}"
+          sh "skaffold deploy -a image.json -n ${NAMESPACE}"
           stageMessage "Successfully deployed to production:\nspringtrader-${env.product}.${env.productionDomain}/spring-nanotrader-services/api/marketSummary"
         }
       }
