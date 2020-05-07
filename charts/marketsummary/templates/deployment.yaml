@@ -23,15 +23,15 @@ spec:
           value: marketsummary.{{ .Release.Namespace }}
         livenessProbe:
           httpGet:
-            path: /actuator/health
-            port: 8080
-          initialDelaySeconds: 60
+            path: /healthz
+            port: 5555
+          initialDelaySeconds: 5
           periodSeconds: 5
         readinessProbe:
           httpGet:
-            path: /actuator/health
-            port: 8080
-          initialDelaySeconds: 60
+            path: /healthz
+            port: 5555
+          initialDelaySeconds: 5
           periodSeconds: 5
         resources:
 {{ toYaml .Values.resources | indent 12 }}

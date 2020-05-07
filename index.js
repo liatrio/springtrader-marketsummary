@@ -14,6 +14,14 @@ const hapi = require("@hapi/hapi");
     },
   });
 
+  server.route({
+    method: "GET",
+    path: "/healthz",
+    handler: (request, h) => {
+      return "ok";
+    },
+  });
+
   await server.start();
   console.log("Server running on %s", server.info.uri);
 })();

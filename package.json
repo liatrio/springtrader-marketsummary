@@ -7,6 +7,9 @@
   "author": "Liatrio",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "prettier": "prettier --write index.js"
+  },
   "dependencies": {
     "@hapi/hapi": "^19.1.1"
   },
