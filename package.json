@@ -21,5 +21,10 @@
   },
   "prettier": {
     "tabWidth": 4
+  },
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "4.2.6"
+    }
   }
 }
