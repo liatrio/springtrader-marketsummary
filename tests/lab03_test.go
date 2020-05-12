@@ -9,7 +9,7 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-var _ = Describe("Lab 3 Microservices", func() {
+var _ = Describe("Lab 3", func() {
 	var failMessage string
 
 	BeforeEach(func() {
