@@ -24,13 +24,13 @@ spec:
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 5555
+            port: {{ .Values.service.port }}
           initialDelaySeconds: 5
           periodSeconds: 5
         readinessProbe:
           httpGet:
             path: /healthz
-            port: 5555
+            port: {{ .Values.service.port }}
           initialDelaySeconds: 5
           periodSeconds: 5
         resources:
