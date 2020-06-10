@@ -5,8 +5,6 @@ const marketsummary = (server) => {
         method: "GET",
         path: "/marketsummary",
         handler: (request, h) => {
-            // console.log("controller headers", request.headers);
-
             return getMarketSummary();
         },
     });

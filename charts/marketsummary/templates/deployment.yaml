@@ -21,6 +21,8 @@ spec:
         env:
         - name: OPENTRACING_JAEGER_SERVICE_NAME
           value: marketsummary.{{ .Release.Namespace }}
+        - name: NODE_ENV
+          value: {{ .Values.nodeEnv }}
         livenessProbe:
           httpGet:
             path: /healthz

@@ -10,6 +10,7 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 workload: springtrader
+nodeEnv:
 
 service:
   type: ClusterIP

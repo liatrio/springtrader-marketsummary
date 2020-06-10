@@ -1,6 +1,12 @@
-const { initTracer, opentracing } = require("jaeger-client");
+const {
+    initTracer,
+    opentracing,
+    ZipkinB3TextMapCodec,
+} = require("jaeger-client");
 const { SAMPLER_TYPE_CONST } = require("jaeger-client/dist/src/constants");
+const boom = require("@hapi/boom");
 const { promisify } = require("util");
+const config = require("config");
 
 let tracer;
 
@@ -21,12 +27,16 @@ const createTracer = () => {
             },
             reporter: {
                 logSpans: true,
-                collectorEndpoint:
-                    "http://jaeger-collector.istio-system.svc.cluster.local:14268/api/traces",
+                collectorEndpoint: config.get("jaegerEndpoint"),
             },
         },
         {}
     );
+
+    const codec = new ZipkinB3TextMapCodec({ urlEncoding: true });
+
+    tracer.registerInjector(opentracing.FORMAT_HTTP_HEADERS, codec);
+    tracer.registerExtractor(opentracing.FORMAT_HTTP_HEADERS, codec);
 };
 
 const closeTracer = () => promisify(tracer.close)();
@@ -43,6 +53,7 @@ const addTracing = (server) => {
     server.ext("onPreHandler", (request, h) => {
         const { path, method } = request.route;
         const spanName = getRouteSpanName(path, method);
+        const requireParentTrace = config.get("requireParentTrace");
 
         if (!spanName) {
             return h.continue;
@@ -53,9 +64,9 @@ const addTracing = (server) => {
             request.headers
         );
 
-        if (parent.toSpanId()) {
+        if (parent.toSpanId() || !requireParentTrace) {
             const span = tracer.startSpan(spanName, {
-                childOf: parent,
+                childOf: requireParentTrace ? parent : undefined,
                 tags: {
                     "http.locale": request.headers["accept-language"],
                 },
@@ -83,6 +94,14 @@ const addTracing = (server) => {
             const span = spans[spanContext.toSpanId()];
 
             if (span) {
+                if (boom.isBoom(request.response, 500)) {
+                    span.log({
+                        error: request.response.stack,
+                        response: request.response.output,
+                    });
+                    span.setTag("error", true);
+                }
+
                 span.finish();
                 delete spans[spanContext.toSpanId()];
             }

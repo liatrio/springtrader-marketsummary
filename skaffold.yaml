@@ -15,6 +15,7 @@ deploy:
         setValueTemplates:
           istioDomain: "{{.ISTIO_DOMAIN}}"
           productName: "{{.PRODUCT_NAME}}"
+          nodeEnv: "{{.NODE_ENV}}"
 portForward:
   - resourceType: service
     resourceName: marketsummary
