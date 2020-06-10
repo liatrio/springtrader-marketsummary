@@ -8,7 +8,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "prettier": "prettier --write index.js --write src/**/*.js"
+    "prettier": "prettier --write index.js --write src/**/*.js",
+    "start": "node index.js"
   },
   "dependencies": {
     "@hapi/boom": "^9.1.0",
