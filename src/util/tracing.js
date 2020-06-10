@@ -7,6 +7,7 @@ const { SAMPLER_TYPE_CONST } = require("jaeger-client/dist/src/constants");
 const boom = require("@hapi/boom");
 const { promisify } = require("util");
 const config = require("config");
+const { getLocaleFromRequest } = require("./helpers");
 
 let tracer;
 
@@ -68,7 +69,7 @@ const addTracing = (server) => {
             const span = tracer.startSpan(spanName, {
                 childOf: requireParentTrace ? parent : undefined,
                 tags: {
-                    "http.locale": request.headers["accept-language"],
+                    "http.locale": getLocaleFromRequest(request),
                 },
             });
 
