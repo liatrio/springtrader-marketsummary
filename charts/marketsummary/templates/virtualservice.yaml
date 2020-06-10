@@ -13,7 +13,7 @@ spec:
         - uri:
             prefix: /spring-nanotrader-services/api/marketSummary
       rewrite:
-        uri: /marketSummary
+        uri: /marketsummary
       route:
         - destination:
             host: marketsummary
