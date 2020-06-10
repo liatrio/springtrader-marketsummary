@@ -48,10 +48,12 @@ const convertCurrency = async (marketSummary, locale) => {
         ...marketSummary,
         tradeStockIndexAverage: tradeStockIndexAverage
             .times(bigNumberExchangeRate)
-            .toFixed(2),
+            .decimalPlaces(2)
+            .toNumber(),
         tradeStockIndexOpenAverage: tradeStockIndexOpenAverage
             .times(bigNumberExchangeRate)
-            .toFixed(2),
+            .decimalPlaces(2)
+            .toNumber(),
     };
 };
 

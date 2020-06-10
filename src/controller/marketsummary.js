@@ -1,5 +1,5 @@
-const { getMarketSummary } = require("../service/marketsummary");
-const { convertCurrency } = require("../service/currencyUtils");
+const { getMarketSummary } = require("../service/marketsummary-service");
+const { convertCurrency } = require("../service/currency-service");
 const { getLocaleFromRequest } = require("../util/helpers");
 
 const marketsummary = (server) => {
