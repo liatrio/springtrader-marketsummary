@@ -1,4 +1,4 @@
-apiVersion: skaffold/v2beta2
+apiVersion: skaffold/v1beta11
 kind: Config
 build:
   artifacts:
@@ -15,9 +15,6 @@ deploy:
         setValueTemplates:
           istioDomain: "{{.ISTIO_DOMAIN}}"
           productName: "{{.PRODUCT_NAME}}"
-          nodeEnv: "{{.NODE_ENV}}"
-portForward:
-  - resourceType: service
-    resourceName: marketsummary
-    namespace: default
-    port: 5555
+        setValues:
+          hpa.enabled: true
+

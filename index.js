@@ -3,6 +3,7 @@ const hapi = require("@hapi/hapi");
 const repository = require("./src/repository");
 const { loadQuoteData } = require("./src/repository/data");
 const marketSummaryController = require("./src/controller/marketsummary");
+const { addTracing, closeTracer } = require("./src/util/tracing");
 
 (async () => {
     const server = hapi.server({
@@ -30,6 +31,7 @@ const marketSummaryController = require("./src/controller/marketsummary");
     await loadQuoteData();
 
     marketSummaryController(server);
+    addTracing(server);
 
     await server.start();
 
@@ -53,6 +55,8 @@ const marketSummaryController = require("./src/controller/marketsummary");
 const stop = async (server, code = 0) => {
     try {
         await server.stop();
+
+        await closeTracer();
         await repository.stop();
     } catch (e) {
         console.log("Error stopping server", e);

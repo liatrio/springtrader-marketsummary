@@ -10,10 +10,11 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 workload: springtrader
+nodeEnv:
 
 service:
   type: ClusterIP
-  port: 8080
+  port: 5555
 
 hpa:
   enabled: false
