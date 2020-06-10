@@ -9,8 +9,8 @@ const loadRates = async () => {
     const response = await fetch(
         "https://api.exchangerate-api.com/v4/latest/USD"
     );
-    const currentRates = await response.json();
-    rates = currentRates;
+
+    rates = (await response.json()).rates;
 };
 
 const getRate = async (currencyCode) => {
@@ -22,14 +22,11 @@ const getRate = async (currencyCode) => {
 };
 
 const convertCurrency = async (marketSummary, locale) => {
-    const tradeStockIndexAverage = new BigNumber(
-        marketSummary.tradeStockIndexAverage
-    );
-    const tradeStockIndexOpenAverage = new BigNumber(
-        marketSummary.tradeStockIndexOpenAverage
-    );
-
     const currencyCode = LocaleCurrency.getCurrency(locale);
+
+    if (currencyCode === "USD") {
+        return marketSummary;
+    }
 
     if (!currencyCode) {
         throw boom.badImplementation(
@@ -37,17 +34,25 @@ const convertCurrency = async (marketSummary, locale) => {
         );
     }
 
+    const tradeStockIndexAverage = new BigNumber(
+        marketSummary.tradeStockIndexAverage
+    );
+    const tradeStockIndexOpenAverage = new BigNumber(
+        marketSummary.tradeStockIndexOpenAverage
+    );
+
     const exchangeRate = await getRate(currencyCode);
     const bigNumberExchangeRate = new BigNumber(exchangeRate);
 
-    marketSummary.tradeStockIndexAverage = tradeStockIndexAverage
-        .times(exchangeRate)
-        .toNumber();
-    marketSummary.tradeStockIndexOpenAverage = tradeStockIndexOpenAverage
-        .times(exchangeRate)
-        .toNumber();
-
-    return marketSummary;
+    return {
+        ...marketSummary,
+        tradeStockIndexAverage: tradeStockIndexAverage
+            .times(bigNumberExchangeRate)
+            .toFixed(2),
+        tradeStockIndexOpenAverage: tradeStockIndexOpenAverage
+            .times(bigNumberExchangeRate)
+            .toFixed(2),
+    };
 };
 
 module.exports = {

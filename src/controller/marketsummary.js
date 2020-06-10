@@ -6,9 +6,10 @@ const marketsummary = (server) => {
     server.route({
         method: "GET",
         path: "/marketsummary",
-        handler: (request, h) => {
-            const marketsummary = getMarketSummary();
+        handler: async (request, h) => {
+            const marketsummary = await getMarketSummary();
             const locale = getLocaleFromRequest(request);
+
             return convertCurrency(marketsummary, locale);
         },
     });
