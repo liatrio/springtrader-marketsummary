@@ -1,6 +1,8 @@
-const fetch = require("node-fetch");
+const fetch = require('node-fetch');
 const LocaleCurrency = require('locale-currency');
 const BigNumber = require('bignumber.js');
+const boom = require('@hapi/boom');
+
 let rates;
 
 const loadRates = async () => {
@@ -24,7 +26,7 @@ const convertCurrency = async (marketSummary, locale) => {
     const currencyCode = LocaleCurrency.getCurrency(locale);
     
     if (!currencyCode) {
-        throw error;
+        throw boom.badImplementation(`could not find currency code for locale: ${locale}`);
     }
 
     const exchangeRate = await getRate(currencyCode);
