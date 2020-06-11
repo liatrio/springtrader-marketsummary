@@ -33,7 +33,9 @@ const getCurrencyConversionRateFromLocale = async (locale) => {
 };
 
 const convertCurrency = async (marketSummary, locale) => {
-    const currencyConversionRate = await getCurrencyConversionRateFromLocale(locale);
+    const currencyConversionRate = await getCurrencyConversionRateFromLocale(
+        locale
+    );
 
     const tradeStockIndexAverage = new BigNumber(
         marketSummary.tradeStockIndexAverage

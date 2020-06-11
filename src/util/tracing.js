@@ -21,7 +21,8 @@ const routesToTrace = {
 const createTracer = () => {
     tracer = initTracer(
         {
-            serviceName: "marketSummary",
+            serviceName:
+                process.env.OPENTRACING_JAEGER_SERVICE_NAME || "marketsummary",
             sampler: {
                 type: SAMPLER_TYPE_CONST,
                 param: 1,
@@ -66,10 +67,16 @@ const addTracing = (server) => {
         );
 
         if (parent.toSpanId() || !requireParentTrace) {
+            console.log("request", request);
+
             const span = tracer.startSpan(spanName, {
                 childOf: requireParentTrace ? parent : undefined,
                 tags: {
                     "http.locale": getLocaleFromRequest(request),
+                    "http.user-agent": request.headers["user-agent"],
+                    "http.host": request.headers.host,
+                    "http.path": path,
+                    "http.method": method,
                 },
             });
 

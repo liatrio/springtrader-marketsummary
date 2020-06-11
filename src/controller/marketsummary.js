@@ -11,7 +11,6 @@ const marketsummary = (server) => {
             const marketsummary = await getMarketSummary();
             const locale = getLocaleFromRequest(request);
 
-
             if (localeIsValid(locale)) {
                 return convertCurrency(marketsummary, locale);
             }

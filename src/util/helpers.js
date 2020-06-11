@@ -17,7 +17,7 @@ const getLocaleFromRequest = (request) => {
 
 const localeIsValid = (locale) => {
     const currencyCode = LocaleCurrency.getCurrency(locale);
-    
+
     return currencyCode !== null;
 };
 
