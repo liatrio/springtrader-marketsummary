@@ -22,10 +22,9 @@ const loadCurrencyConversionRates = async () => {
     );
 };
 
-const getConversionRateFromLocale = async (locale) => {
+const getCurrencyConversionRateFromLocale = async (locale) => {
     if (!rates) {
         await loadCurrencyConversionRates();
-        console.log("rates", rates);
     }
 
     const currencyCode = LocaleCurrency.getCurrency(locale);
@@ -34,7 +33,7 @@ const getConversionRateFromLocale = async (locale) => {
 };
 
 const convertCurrency = async (marketSummary, locale) => {
-    const exchangeRate = await getConversionRateFromLocale(locale);
+    const currencyConversionRate = await getCurrencyConversionRateFromLocale(locale);
 
     const tradeStockIndexAverage = new BigNumber(
         marketSummary.tradeStockIndexAverage
@@ -43,7 +42,7 @@ const convertCurrency = async (marketSummary, locale) => {
         marketSummary.tradeStockIndexOpenAverage
     );
 
-    const bigNumberExchangeRate = new BigNumber(exchangeRate);
+    const bigNumberExchangeRate = new BigNumber(currencyConversionRate);
 
     return {
         ...marketSummary,
