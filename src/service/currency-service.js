@@ -1,38 +1,40 @@
 const fetch = require("node-fetch");
 const LocaleCurrency = require("locale-currency");
 const BigNumber = require("bignumber.js");
-const boom = require("@hapi/boom");
 
 let rates;
 
-const loadRates = async () => {
+const loadCurrencyConversionRates = async () => {
     const response = await fetch(
         "https://api.exchangerate-api.com/v4/latest/USD"
     );
 
-    rates = (await response.json()).rates;
+    const currencyRates = (await response.json()).rates;
+
+    rates = Object.keys(currencyRates).reduce(
+        (acc, key) => ({
+            ...acc,
+            [key]: {
+                rate: currencyRates[key],
+            },
+        }),
+        {}
+    );
 };
 
-const getRate = async (currencyCode) => {
+const getConversionRateFromLocale = async (locale) => {
     if (!rates) {
-        await loadRates();
+        await loadCurrencyConversionRates();
+        console.log("rates", rates);
     }
 
-    return rates[currencyCode];
+    const currencyCode = LocaleCurrency.getCurrency(locale);
+
+    return rates[currencyCode].rate;
 };
 
 const convertCurrency = async (marketSummary, locale) => {
-    const currencyCode = LocaleCurrency.getCurrency(locale);
-
-    if (currencyCode === "USD") {
-        return marketSummary;
-    }
-
-    if (!currencyCode) {
-        throw boom.badImplementation(
-            `could not find currency code for locale: ${locale}`
-        );
-    }
+    const exchangeRate = await getConversionRateFromLocale(locale);
 
     const tradeStockIndexAverage = new BigNumber(
         marketSummary.tradeStockIndexAverage
@@ -41,7 +43,6 @@ const convertCurrency = async (marketSummary, locale) => {
         marketSummary.tradeStockIndexOpenAverage
     );
 
-    const exchangeRate = await getRate(currencyCode);
     const bigNumberExchangeRate = new BigNumber(exchangeRate);
 
     return {
