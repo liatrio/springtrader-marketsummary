@@ -1,5 +1,4 @@
 const parser = require("accept-language-parser");
-const LocaleCurrency = require("locale-currency");
 
 const getLocaleFromRequest = (request) => {
     const [language] = parser.parse(request.headers["accept-language"]);
@@ -15,13 +14,6 @@ const getLocaleFromRequest = (request) => {
     return language.code;
 };
 
-const localeIsValid = (locale) => {
-    const currencyCode = LocaleCurrency.getCurrency(locale);
-
-    return currencyCode !== null;
-};
-
 module.exports = {
     getLocaleFromRequest,
-    localeIsValid,
 };

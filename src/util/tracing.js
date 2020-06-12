@@ -67,8 +67,6 @@ const addTracing = (server) => {
         );
 
         if (parent.toSpanId() || !requireParentTrace) {
-            console.log("request", request);
-
             const span = tracer.startSpan(spanName, {
                 childOf: requireParentTrace ? parent : undefined,
                 tags: {

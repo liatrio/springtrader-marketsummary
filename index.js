@@ -13,18 +13,8 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
 
     server.route({
         method: "GET",
-        path: "/",
-        handler: (request, h) => {
-            return "hello world";
-        },
-    });
-
-    server.route({
-        method: "GET",
         path: "/healthz",
-        handler: (request, h) => {
-            return "ok";
-        },
+        handler: () => "ok",
     });
 
     await repository.start();
