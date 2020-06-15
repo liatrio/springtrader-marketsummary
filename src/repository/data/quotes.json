@@ -1,0 +1,1002 @@
+[
+  {
+    "low": 107.32,
+    "open1": 116.32,
+    "volume": 0,
+    "price": 113.32,
+    "high": 118.32,
+    "companyname": "Activision Blizzard, Inc",
+    "symbol": "ATVI",
+    "change1": 14
+  },
+  {
+    "low": 119.22,
+    "open1": 130.22,
+    "volume": 0,
+    "price": 126.22,
+    "high": 134.22,
+    "companyname": "Adobe Systems Incorporated",
+    "symbol": "ADBE",
+    "change1": 7
+  },
+  {
+    "low": 109.49,
+    "open1": 116.49,
+    "volume": 0,
+    "price": 125.49,
+    "high": 110.49,
+    "companyname": "Akamai Technologies, Inc.",
+    "symbol": "AKAM",
+    "change1": 16
+  },
+  {
+    "low": 44.58,
+    "open1": 59.58,
+    "volume": 0,
+    "price": 49.58,
+    "high": 45.58,
+    "companyname": "Alexion Pharmaceuticals, Inc.",
+    "symbol": "ALXN",
+    "change1": 13
+  },
+  {
+    "low": 131.47,
+    "open1": 144.47,
+    "volume": 0,
+    "price": 147.47,
+    "high": 143.47,
+    "companyname": "Altera Corporation",
+    "symbol": "ALTR",
+    "change1": 13
+  },
+  {
+    "low": 127.75,
+    "open1": 127.75,
+    "volume": 0,
+    "price": 132.75,
+    "high": 144.75,
+    "companyname": "Amazon.com, Inc.",
+    "symbol": "AMZN",
+    "change1": 2
+  },
+  {
+    "low": 167.96,
+    "open1": 178.96,
+    "volume": 0,
+    "price": 175.96,
+    "high": 171.96,
+    "companyname": "Amgen Inc.",
+    "symbol": "AMGN",
+    "change1": 12
+  },
+  {
+    "low": 23.29,
+    "open1": 25.29,
+    "volume": 0,
+    "price": 24.29,
+    "high": 31.29,
+    "companyname": "Apollo Group, Inc.",
+    "symbol": "APOL",
+    "change1": 7
+  },
+  {
+    "low": 118.65,
+    "open1": 130.65,
+    "volume": 0,
+    "price": 118.65,
+    "high": 122.65,
+    "companyname": "Apple Inc.",
+    "symbol": "AAPL",
+    "change1": 8
+  },
+  {
+    "low": 6.96,
+    "open1": 7.96,
+    "volume": 0,
+    "price": 21.96,
+    "high": 22.96,
+    "companyname": "Applied Materials, Inc.",
+    "symbol": "AMAT",
+    "change1": 17
+  },
+  {
+    "low": 113.04,
+    "open1": 118.04,
+    "volume": 0,
+    "price": 131.04,
+    "high": 127.04,
+    "companyname": "Autodesk, Inc.",
+    "symbol": "ADSK",
+    "change1": 14
+  },
+  {
+    "low": 152.23,
+    "open1": 161.23,
+    "volume": 0,
+    "price": 169.23,
+    "high": 170.23,
+    "companyname": "Automatic Data Processing, Inc.",
+    "symbol": "ADP",
+    "change1": 6
+  },
+  {
+    "low": 67.19,
+    "open1": 72.19,
+    "volume": 0,
+    "price": 85.19,
+    "high": 75.19,
+    "companyname": "Baidu, Inc.",
+    "symbol": "BIDU",
+    "change1": 10
+  },
+  {
+    "low": 86.37,
+    "open1": 98.37,
+    "volume": 0,
+    "price": 95.37,
+    "high": 87.37,
+    "companyname": "Bed Bath & Beyond Inc.",
+    "symbol": "BBBY",
+    "change1": 8
+  },
+  {
+    "low": 158.48,
+    "open1": 172.48,
+    "volume": 0,
+    "price": 158.48,
+    "high": 172.48,
+    "companyname": "Biogen Idec Inc",
+    "symbol": "BIIB",
+    "change1": 12
+  },
+  {
+    "low": 28.64,
+    "open1": 37.64,
+    "volume": 0,
+    "price": 32.64,
+    "high": 35.64,
+    "companyname": "BMC Software, Inc.",
+    "symbol": "BMC",
+    "change1": 0
+  },
+  {
+    "low": 107.14,
+    "open1": 110.14,
+    "volume": 0,
+    "price": 108.14,
+    "high": 108.14,
+    "companyname": "Broadcom Corporation",
+    "symbol": "BRCM",
+    "change1": 11
+  },
+  {
+    "low": 69.07,
+    "open1": 77.07,
+    "volume": 0,
+    "price": 83.07,
+    "high": 77.07,
+    "companyname": "C.H. Robinson Worldwide, Inc.",
+    "symbol": "CHRW",
+    "change1": 0
+  },
+  {
+    "low": 71.78,
+    "open1": 87.78,
+    "volume": 0,
+    "price": 72.78,
+    "high": 71.78,
+    "companyname": "CA Inc.",
+    "symbol": "CA",
+    "change1": 3
+  },
+  {
+    "low": 143.75,
+    "open1": 147.75,
+    "volume": 0,
+    "price": 152.75,
+    "high": 156.75,
+    "companyname": "Celgene Corporation",
+    "symbol": "CELG",
+    "change1": 9
+  },
+  {
+    "low": 74.45,
+    "open1": 79.45,
+    "volume": 0,
+    "price": 93.45,
+    "high": 88.45,
+    "companyname": "Cerner Corporation",
+    "symbol": "CERN",
+    "change1": 4
+  },
+  {
+    "low": 31.64,
+    "open1": 47.64,
+    "volume": 0,
+    "price": 39.64,
+    "high": 50.64,
+    "companyname": "Check Point Software Technologies Ltd.",
+    "symbol": "CHKP",
+    "change1": 10
+  },
+  {
+    "low": 39.31,
+    "open1": 48.31,
+    "volume": 0,
+    "price": 46.31,
+    "high": 57.31,
+    "companyname": "Cisco Systems, Inc.",
+    "symbol": "CSCO",
+    "change1": 7
+  },
+  {
+    "low": 156.1,
+    "open1": 158.1,
+    "volume": 0,
+    "price": 162.1,
+    "high": 174.1,
+    "companyname": "Citrix Systems, Inc.",
+    "symbol": "CTXS",
+    "change1": 14
+  },
+  {
+    "low": 125.35,
+    "open1": 126.35,
+    "volume": 0,
+    "price": 131.35,
+    "high": 134.35,
+    "companyname": "Cognizant Technology Solutions Corporation",
+    "symbol": "CTSH",
+    "change1": 9
+  },
+  {
+    "low": 145.16,
+    "open1": 154.16,
+    "volume": 0,
+    "price": 156.16,
+    "high": 155.16,
+    "companyname": "Comcast Corporation",
+    "symbol": "CMCSA",
+    "change1": 17
+  },
+  {
+    "low": 98.6,
+    "open1": 107.6,
+    "volume": 0,
+    "price": 115.6,
+    "high": 110.6,
+    "companyname": "Costco Wholesale Corporation",
+    "symbol": "COST",
+    "change1": 2
+  },
+  {
+    "low": 173.48,
+    "open1": 175.48,
+    "volume": 0,
+    "price": 174.48,
+    "high": 173.48,
+    "companyname": "Ctrip.com International, Ltd.",
+    "symbol": "CTRP",
+    "change1": 3
+  },
+  {
+    "low": 134.24,
+    "open1": 136.24,
+    "volume": 0,
+    "price": 134.24,
+    "high": 140.24,
+    "companyname": "Dell Inc.",
+    "symbol": "DELL",
+    "change1": 19
+  },
+  {
+    "low": 23.82,
+    "open1": 38.82,
+    "volume": 0,
+    "price": 26.82,
+    "high": 35.82,
+    "companyname": "DENTSPLY International Inc.",
+    "symbol": "XRAY",
+    "change1": 1
+  },
+  {
+    "low": 146.81,
+    "open1": 151.81,
+    "volume": 0,
+    "price": 150.81,
+    "high": 157.81,
+    "companyname": "'DIRECTV'",
+    "symbol": "DTV",
+    "change1": 3
+  },
+  {
+    "low": 46.0,
+    "open1": 59.0,
+    "volume": 0,
+    "price": 60.0,
+    "high": 52.0,
+    "companyname": "Dollar Tree, Inc.",
+    "symbol": "DLTR",
+    "change1": 2
+  },
+  {
+    "low": 143.05,
+    "open1": 154.05,
+    "volume": 0,
+    "price": 150.05,
+    "high": 152.05,
+    "companyname": "eBay Inc.",
+    "symbol": "EBAY",
+    "change1": 6
+  },
+  {
+    "low": 137.75,
+    "open1": 137.75,
+    "volume": 0,
+    "price": 146.75,
+    "high": 139.75,
+    "companyname": "Electronic Arts Inc.",
+    "symbol": "EA",
+    "change1": 19
+  },
+  {
+    "low": 148.46,
+    "open1": 157.46,
+    "volume": 0,
+    "price": 163.46,
+    "high": 157.46,
+    "companyname": "Expedia, Inc.",
+    "symbol": "EXPE",
+    "change1": 10
+  },
+  {
+    "low": 24.49,
+    "open1": 29.49,
+    "volume": 0,
+    "price": 31.49,
+    "high": 26.49,
+    "companyname": "Expeditors International of Washington, Inc.",
+    "symbol": "EXPD",
+    "change1": 4
+  },
+  {
+    "low": 18.34,
+    "open1": 32.34,
+    "volume": 0,
+    "price": 26.34,
+    "high": 37.34,
+    "companyname": "Express Scripts, Inc.",
+    "symbol": "ESRX",
+    "change1": 9
+  },
+  {
+    "low": 54.58,
+    "open1": 72.58,
+    "volume": 0,
+    "price": 55.58,
+    "high": 63.58,
+    "companyname": "F5 Networks, Inc.",
+    "symbol": "FFIV",
+    "change1": 6
+  },
+  {
+    "low": 155.7,
+    "open1": 172.7,
+    "volume": 0,
+    "price": 157.7,
+    "high": 167.7,
+    "companyname": "Fastenal Company",
+    "symbol": "FAST",
+    "change1": 14
+  },
+  {
+    "low": 39.48,
+    "open1": 39.48,
+    "volume": 0,
+    "price": 54.48,
+    "high": 55.48,
+    "companyname": "First Solar, Inc.",
+    "symbol": "FSLR",
+    "change1": 10
+  },
+  {
+    "low": 53.57,
+    "open1": 54.57,
+    "volume": 0,
+    "price": 57.57,
+    "high": 58.57,
+    "companyname": "Fiserv, Inc.",
+    "symbol": "FISV",
+    "change1": 4
+  },
+  {
+    "low": 108.77,
+    "open1": 108.77,
+    "volume": 0,
+    "price": 124.77,
+    "high": 108.77,
+    "companyname": "Flextronics International Ltd.",
+    "symbol": "FLEX",
+    "change1": 18
+  },
+  {
+    "low": 166.35,
+    "open1": 169.35,
+    "volume": 0,
+    "price": 182.35,
+    "high": 167.35,
+    "companyname": "FLIR Systems, Inc.",
+    "symbol": "FLIR",
+    "change1": 18
+  },
+  {
+    "low": 168.23,
+    "open1": 174.23,
+    "volume": 0,
+    "price": 182.23,
+    "high": 185.23,
+    "companyname": "Garmin Ltd.",
+    "symbol": "GRMN",
+    "change1": 13
+  },
+  {
+    "low": 3.58,
+    "open1": 6.58,
+    "volume": 0,
+    "price": 16.58,
+    "high": 21.58,
+    "companyname": "Gilead Sciences, Inc.",
+    "symbol": "GILD",
+    "change1": 11
+  },
+  {
+    "low": 24.33,
+    "open1": 39.33,
+    "volume": 0,
+    "price": 36.33,
+    "high": 27.33,
+    "companyname": "Google Inc.",
+    "symbol": "GOOG",
+    "change1": 9
+  },
+  {
+    "low": 33.63,
+    "open1": 49.63,
+    "volume": 0,
+    "price": 52.63,
+    "high": 39.63,
+    "companyname": "Green Mountain Coffee Roasters, Inc.",
+    "symbol": "GMCR",
+    "change1": 11
+  },
+  {
+    "low": 88.16,
+    "open1": 89.16,
+    "volume": 0,
+    "price": 105.16,
+    "high": 102.16,
+    "companyname": "Henry Schein, Inc.",
+    "symbol": "HSIC",
+    "change1": 19
+  },
+  {
+    "low": 172.33,
+    "open1": 188.33,
+    "volume": 0,
+    "price": 189.33,
+    "high": 182.33,
+    "companyname": "Illumina, Inc.",
+    "symbol": "ILMN",
+    "change1": 12
+  },
+  {
+    "low": 103.9,
+    "open1": 112.9,
+    "volume": 0,
+    "price": 118.9,
+    "high": 122.9,
+    "companyname": "Infosys Limited",
+    "symbol": "INFY",
+    "change1": 1
+  },
+  {
+    "low": 104.79,
+    "open1": 121.79,
+    "volume": 0,
+    "price": 122.79,
+    "high": 120.79,
+    "companyname": "Intel Corporation",
+    "symbol": "INTC",
+    "change1": 16
+  },
+  {
+    "low": 52.23,
+    "open1": 68.23,
+    "volume": 0,
+    "price": 55.23,
+    "high": 62.23,
+    "companyname": "Intuit Inc.",
+    "symbol": "INTU",
+    "change1": 6
+  },
+  {
+    "low": 152.43,
+    "open1": 153.43,
+    "volume": 0,
+    "price": 164.43,
+    "high": 164.43,
+    "companyname": "Intuitive Surgical, Inc.",
+    "symbol": "ISRG",
+    "change1": 13
+  },
+  {
+    "low": 126.74,
+    "open1": 143.74,
+    "volume": 0,
+    "price": 126.74,
+    "high": 134.74,
+    "companyname": "Joy Global Inc.",
+    "symbol": "JOYG",
+    "change1": 18
+  },
+  {
+    "low": 154.79,
+    "open1": 172.79,
+    "volume": 0,
+    "price": 167.79,
+    "high": 157.79,
+    "companyname": "KLA-Tencor Corporation",
+    "symbol": "KLAC",
+    "change1": 11
+  },
+  {
+    "low": 16.93,
+    "open1": 20.93,
+    "volume": 0,
+    "price": 27.93,
+    "high": 32.93,
+    "companyname": "Lam Research Corporation",
+    "symbol": "LRCX",
+    "change1": 1
+  },
+  {
+    "low": 11.04,
+    "open1": 30.04,
+    "volume": 0,
+    "price": 13.04,
+    "high": 20.04,
+    "companyname": "Liberty Media Corporation",
+    "symbol": "LINTA",
+    "change1": 15
+  },
+  {
+    "low": 87.51,
+    "open1": 92.51,
+    "volume": 0,
+    "price": 92.51,
+    "high": 98.51,
+    "companyname": "Life Technologies Corporation",
+    "symbol": "LIFE",
+    "change1": 10
+  },
+  {
+    "low": 15.71,
+    "open1": 20.71,
+    "volume": 0,
+    "price": 18.71,
+    "high": 15.71,
+    "companyname": "Linear Technology Corporation",
+    "symbol": "LLTC",
+    "change1": 3
+  },
+  {
+    "low": 47.17,
+    "open1": 62.17,
+    "volume": 0,
+    "price": 48.17,
+    "high": 57.17,
+    "companyname": "Marvell Technology Group Ltd.",
+    "symbol": "MRVL",
+    "change1": 5
+  },
+  {
+    "low": 161.83,
+    "open1": 169.83,
+    "volume": 0,
+    "price": 169.83,
+    "high": 176.83,
+    "companyname": "Mattel, Inc.",
+    "symbol": "MAT",
+    "change1": 17
+  },
+  {
+    "low": 77.26,
+    "open1": 77.26,
+    "volume": 0,
+    "price": 91.26,
+    "high": 95.26,
+    "companyname": "Maxim Integrated Products, Inc.",
+    "symbol": "MXIM",
+    "change1": 14
+  },
+  {
+    "low": 66.24,
+    "open1": 69.24,
+    "volume": 0,
+    "price": 84.24,
+    "high": 70.24,
+    "companyname": "Microchip Technology Incorporated",
+    "symbol": "MCHP",
+    "change1": 4
+  },
+  {
+    "low": 150.15,
+    "open1": 158.15,
+    "volume": 0,
+    "price": 151.15,
+    "high": 159.15,
+    "companyname": "Micron Technology, Inc.",
+    "symbol": "MU",
+    "change1": 7
+  },
+  {
+    "low": 64.79,
+    "open1": 76.79,
+    "volume": 0,
+    "price": 78.79,
+    "high": 65.79,
+    "companyname": "Microsoft Corporation",
+    "symbol": "MSFT",
+    "change1": 13
+  },
+  {
+    "low": 67.96,
+    "open1": 67.96,
+    "volume": 0,
+    "price": 69.96,
+    "high": 74.96,
+    "companyname": "Mylan Inc.",
+    "symbol": "MYL",
+    "change1": 4
+  },
+  {
+    "low": 107.75,
+    "open1": 126.75,
+    "volume": 0,
+    "price": 107.75,
+    "high": 114.75,
+    "companyname": "NetApp, Inc.",
+    "symbol": "NTAP",
+    "change1": 11
+  },
+  {
+    "low": 78.11,
+    "open1": 86.11,
+    "volume": 0,
+    "price": 84.11,
+    "high": 79.11,
+    "companyname": "Netflix, Inc.",
+    "symbol": "NFLX",
+    "change1": 4
+  },
+  {
+    "low": 183.36,
+    "open1": 185.36,
+    "volume": 0,
+    "price": 187.36,
+    "high": 194.36,
+    "companyname": "News Corporation",
+    "symbol": "NWSA",
+    "change1": 8
+  },
+  {
+    "low": 137.17,
+    "open1": 145.17,
+    "volume": 0,
+    "price": 150.17,
+    "high": 154.17,
+    "companyname": "NII Holdings, Inc.",
+    "symbol": "NIHD",
+    "change1": 19
+  },
+  {
+    "low": 105.43,
+    "open1": 105.43,
+    "volume": 0,
+    "price": 121.43,
+    "high": 112.43,
+    "companyname": "NVIDIA Corporation",
+    "symbol": "NVDA",
+    "change1": 13
+  },
+  {
+    "low": 170.97,
+    "open1": 171.97,
+    "volume": 0,
+    "price": 186.97,
+    "high": 179.97,
+    "companyname": "O Reilly Automotive, Inc.",
+    "symbol": "ORLY",
+    "change1": 4
+  },
+  {
+    "low": 15.61,
+    "open1": 30.61,
+    "volume": 0,
+    "price": 20.61,
+    "high": 15.61,
+    "companyname": "Oracle Corporation",
+    "symbol": "ORCL",
+    "change1": 8
+  },
+  {
+    "low": 56.72,
+    "open1": 75.72,
+    "volume": 0,
+    "price": 73.72,
+    "high": 56.72,
+    "companyname": "PACCAR Inc.",
+    "symbol": "PCAR",
+    "change1": 1
+  },
+  {
+    "low": 5.58,
+    "open1": 22.58,
+    "volume": 0,
+    "price": 18.58,
+    "high": 7.58,
+    "companyname": "Paychex, Inc.",
+    "symbol": "PAYX",
+    "change1": 16
+  },
+  {
+    "low": 133.19,
+    "open1": 137.19,
+    "volume": 0,
+    "price": 133.19,
+    "high": 151.19,
+    "companyname": "priceline.com Incorporated",
+    "symbol": "PCLN",
+    "change1": 9
+  },
+  {
+    "low": 155.74,
+    "open1": 167.74,
+    "volume": 0,
+    "price": 170.74,
+    "high": 174.74,
+    "companyname": "Qiagen N.V.",
+    "symbol": "QGEN",
+    "change1": 19
+  },
+  {
+    "low": 50.12,
+    "open1": 67.12,
+    "volume": 0,
+    "price": 69.12,
+    "high": 55.12,
+    "companyname": "QUALCOMM Incorporated",
+    "symbol": "QCOM",
+    "change1": 0
+  },
+  {
+    "low": 164.21,
+    "open1": 170.21,
+    "volume": 0,
+    "price": 166.21,
+    "high": 178.21,
+    "companyname": "Research in Motion Limited",
+    "symbol": "RIMM",
+    "change1": 13
+  },
+  {
+    "low": 159.99,
+    "open1": 176.99,
+    "volume": 0,
+    "price": 176.99,
+    "high": 163.99,
+    "companyname": "Ross Stores, Inc.",
+    "symbol": "ROST",
+    "change1": 12
+  },
+  {
+    "low": 98.83,
+    "open1": 111.83,
+    "volume": 0,
+    "price": 109.83,
+    "high": 113.83,
+    "companyname": "SanDisk Corporation",
+    "symbol": "SNDK",
+    "change1": 8
+  },
+  {
+    "low": 191.18,
+    "open1": 196.18,
+    "volume": 0,
+    "price": 192.18,
+    "high": 194.18,
+    "companyname": "Seagate Technology.",
+    "symbol": "STX",
+    "change1": 7
+  },
+  {
+    "low": 4.49,
+    "open1": 10.49,
+    "volume": 0,
+    "price": 14.49,
+    "high": 9.49,
+    "companyname": "Sears Holdings Corporation",
+    "symbol": "SHLD",
+    "change1": 6
+  },
+  {
+    "low": 72.59,
+    "open1": 76.59,
+    "volume": 0,
+    "price": 81.59,
+    "high": 75.59,
+    "companyname": "Sigma-Aldrich Corporation",
+    "symbol": "SIAL",
+    "change1": 2
+  },
+  {
+    "low": 176.3,
+    "open1": 189.3,
+    "volume": 0,
+    "price": 189.3,
+    "high": 183.3,
+    "companyname": "Sirius XM Radio Inc.",
+    "symbol": "SIRI",
+    "change1": 13
+  },
+  {
+    "low": 104.41,
+    "open1": 105.41,
+    "volume": 0,
+    "price": 115.41,
+    "high": 117.41,
+    "companyname": "Staples, Inc.",
+    "symbol": "SPLS",
+    "change1": 7
+  },
+  {
+    "low": 158.48,
+    "open1": 158.48,
+    "volume": 0,
+    "price": 164.48,
+    "high": 177.48,
+    "companyname": "Starbucks Corporation",
+    "symbol": "SBUX",
+    "change1": 15
+  },
+  {
+    "low": 93.11,
+    "open1": 98.11,
+    "volume": 0,
+    "price": 107.11,
+    "high": 101.11,
+    "companyname": "Stericycle, Inc.",
+    "symbol": "SRCL",
+    "change1": 1
+  },
+  {
+    "low": 102.15,
+    "open1": 116.15,
+    "volume": 0,
+    "price": 111.15,
+    "high": 115.15,
+    "companyname": "Symantec Corporation",
+    "symbol": "SYMC",
+    "change1": 12
+  },
+  {
+    "low": 30.55,
+    "open1": 31.55,
+    "volume": 0,
+    "price": 35.55,
+    "high": 33.55,
+    "companyname": "Teva Pharmaceutical Industries Limited",
+    "symbol": "TEVA",
+    "change1": 8
+  },
+  {
+    "low": 33.29,
+    "open1": 43.29,
+    "volume": 0,
+    "price": 40.29,
+    "high": 48.29,
+    "companyname": "Urban Outfitters, Inc.",
+    "symbol": "URBN",
+    "change1": 11
+  },
+  {
+    "low": 167.44,
+    "open1": 185.44,
+    "volume": 0,
+    "price": 178.44,
+    "high": 179.44,
+    "companyname": "VeriSign, Inc.",
+    "symbol": "VRSN",
+    "change1": 3
+  },
+  {
+    "low": 27.14,
+    "open1": 34.14,
+    "volume": 0,
+    "price": 36.14,
+    "high": 46.14,
+    "companyname": "Vertex Pharmaceuticals Incorporated",
+    "symbol": "VRTX",
+    "change1": 14
+  },
+  {
+    "low": 18.56,
+    "open1": 35.56,
+    "volume": 0,
+    "price": 28.56,
+    "high": 23.56,
+    "companyname": "Virgin Media Inc.",
+    "symbol": "VMED",
+    "change1": 7
+  },
+  {
+    "low": 145.18,
+    "open1": 159.18,
+    "volume": 0,
+    "price": 154.18,
+    "high": 161.18,
+    "companyname": "'VMware'",
+    "symbol": "VMW",
+    "change1": 3
+  },
+  {
+    "low": 130.39,
+    "open1": 148.39,
+    "volume": 0,
+    "price": 144.39,
+    "high": 149.39,
+    "companyname": "Warner Chilcott plc",
+    "symbol": "WCRX",
+    "change1": 15
+  },
+  {
+    "low": 173.77,
+    "open1": 180.77,
+    "volume": 0,
+    "price": 184.77,
+    "high": 177.77,
+    "companyname": "Whole Foods Market, Inc.",
+    "symbol": "WFM",
+    "change1": 9
+  },
+  {
+    "low": 39.62,
+    "open1": 54.62,
+    "volume": 0,
+    "price": 40.62,
+    "high": 41.62,
+    "companyname": "Wynn Resorts, Limited",
+    "symbol": "WYNN",
+    "change1": 1
+  },
+  {
+    "low": 59.39,
+    "open1": 68.39,
+    "volume": 0,
+    "price": 65.39,
+    "high": 63.39,
+    "companyname": "Xilinx, Inc.",
+    "symbol": "XLNX",
+    "change1": 17
+  },
+  {
+    "low": 64.55,
+    "open1": 74.55,
+    "volume": 0,
+    "price": 66.55,
+    "high": 76.55,
+    "companyname": "Yahoo! Inc.",
+    "symbol": "YHOO",
+    "change1": 8
+  }
+]

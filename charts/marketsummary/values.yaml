@@ -10,17 +10,18 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 workload: springtrader
+nodeEnv:
 
 service:
   type: ClusterIP
-  port: 8080
+  port: 5555
 
 hpa:
   enabled: false
   minReplicas: 1
   maxReplicas: 2
   cpu: 80
-  memory: 512Mi
+  memory: 100Mi
   requests:
 
 canary:
@@ -44,11 +45,11 @@ ingress:
 
 resources:
   requests:
-    memory: "512Mi"
-    cpu: "128m"
+    memory: "64Mi"
+    cpu: "100m"
   limits:
-    memory: "768Mi"
-    cpu: "1024m"
+    memory: "128Mi"
+    cpu: "200m"
 
 nodeSelector: {}
 

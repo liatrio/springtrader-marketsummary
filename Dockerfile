@@ -1,19 +1,10 @@
-FROM gradle:5.5-jdk8 as builder
+FROM node:12.16.3
 
-WORKDIR /app
-ENV GRADLE_OPTS -Dorg.gradle.daemon=false
+WORKDIR /usr/src/app
 
-# Keep gradle dependencies in separate image layer
-COPY build.gradle settings.gradle ./
-RUN gradle classes || echo "ok"
+COPY package.json yarn.lock ./
+RUN yarn --production
 
-# Copy in the src and build
-COPY src /app/src
-RUN gradle build
+COPY . .
 
-FROM openjdk:8-jre-alpine
-WORKDIR /app
-
-COPY --from=builder /app/build/libs/springtrader-marketSummary.jar .
-ENTRYPOINT ["java","-jar","springtrader-marketSummary.jar"]
-EXPOSE 8080
+ENTRYPOINT ["node", "index.js"]

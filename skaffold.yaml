@@ -1,4 +1,4 @@
-apiVersion: skaffold/v1beta11
+apiVersion: skaffold/v2beta2
 kind: Config
 build:
   artifacts:
@@ -15,3 +15,4 @@ deploy:
         setValueTemplates:
           istioDomain: "{{.ISTIO_DOMAIN}}"
           productName: "{{.PRODUCT_NAME}}"
+          nodeEnv: "{{.NODE_ENV}}"

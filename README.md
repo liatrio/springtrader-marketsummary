@@ -6,25 +6,37 @@ This repository is for the marketsummary microservice that was taken from the
 springtrader monolith application found in the [liatrio/springtrader](https://github.com/liatrio/springtrader)
 repository. 
 
-This microservice is essentially just a standalone springboot application with only
-the MarketSummary controller java class and the dependencies it needs to run along with 
-an H2 database. There is only one endpoint located at the path `/marketsummary`. This project
-uses `gradle 5.x` to build and `java 8` to run.
+This microservice encapsulates the functionality found within the [MarketSummary controller](https://github.com/liatrio/springtrader/blob/master/spring-nanotrader-services/src/main/java/org/springframework/nanotrader/web/controller/MarketSummaryController.java),
+rewritten in JavaScript. This microservice runs as a standalone application using an embedded database.
 
-Note: The original monolith uses `gradle 1.2` to build and `java 7` to run
+The rewritten version of this microservice uses the following technologies:
+- [Node.JS](https://nodejs.org/) / JavaScript
+- [Yarn](https://yarnpkg.com/)
+- [Hapi](https://hapi.dev/)
+- [MongoDB](https://www.mongodb.com/)
 
 ## Running locally
 
-If you have docker installed you can build and run the container locally via
+After cloning the repository, you can use `yarn` to install the needed dependencies, and `yarn start` to start the application on port 5555.
+
+Optionally, you can also run Jaeger locally to see traces created by the microservice:
+
+```bash
+docker run -d --name jaeger \
+    -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \
+    -p 5775:5775/udp \
+    -p 6831:6831/udp \
+    -p 6832:6832/udp \
+    -p 5778:5778 \
+    -p 16686:16686 \
+    -p 14268:14268 \
+    -p 9411:9411 \
+    jaegertracing/all-in-one:1.8
 ```
-docker build -t marketsummary .
-docker run -p 8080:8080 marketsummary
-```
-To check if it's running you can either visit `http://localhost:8080/marketsummary` in Google Chrome
-or you can run `curl localhost:8080/marketsummary` from the commandline. If the build was 
-successful you should see receive some JSON data of stock prices.
+
+You can visit the Jaeger UI at http://localhost:16686 and search for traces under the `marketsummary` service.
 
 ## Running via Lead SDM
 
-As long as there is an instance of the monolith and the microservice running on the same product namespace 
+As long as there is an instance of the monolith and the microservice running in the same product namespace, 
 istio should be routing web traffic that attempts to hit the `/marketsummary` endpoint to the microservice.

@@ -24,6 +24,7 @@ pipeline {
       environment {
         ISTIO_DOMAIN = "${env.stagingDomain}"
         PRODUCT_NAME = "${env.product}"
+        NODE_ENV     = "staging"
       }
       steps {
         container('skaffold') {
@@ -60,6 +61,7 @@ pipeline {
       environment {
         ISTIO_DOMAIN = "${env.productionDomain}"
         PRODUCT_NAME = "${env.product}"
+        NODE_ENV     = "production"
       }
       steps {
         container('skaffold') {
