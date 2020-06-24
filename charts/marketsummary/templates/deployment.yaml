@@ -23,6 +23,8 @@ spec:
           value: marketsummary.{{ .Release.Namespace }}
         - name: NODE_ENV
           value: {{ .Values.nodeEnv }}
+        - name: DATABASE_NAMESPACE
+          value: {{ .Values.productName }}-db
         livenessProbe:
           httpGet:
             path: /healthz
