@@ -12,7 +12,7 @@ const getConnection = () => {
 
 const start = async () => {
     if (!connection) {
-        connection = await mongoose.createConnection(`mongodb.${process.env.DATABASE_NAMESPACe}.svc.cluster.local`);
+        connection = await mongoose.createConnection(`mongodb://mongodb.${process.env.DATABASE_NAMESPACe}.svc.cluster.local:27017`);
     }
 };
 
