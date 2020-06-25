@@ -18,7 +18,9 @@ const start = async () => {
         mongoose.connection.db.listCollections({name: 'quotes'})
         .next(function(err, exists) {
             if (!exists) {
-                await loadQuoteData();
+                async() => {
+                    await loadQuoteData();
+                };
             }
         });
     }
