@@ -1,4 +1,7 @@
 const hapi = require("@hapi/hapi");
+const mongoose = require("mongoose");
+const { loadQuoteData } = require("./src/repository/data");
+
 
 const repository = require("./src/repository");
 const marketSummaryController = require("./src/controller/marketsummary");
@@ -17,6 +20,14 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
     });
 
     await repository.start();
+    mongoose.connection.db.listCollections({name: 'quotes'})
+        .next(function(err, exists) {
+            if (!exists) {
+                async() => {
+                    await loadQuoteData();
+                };
+            }
+        });
 
     marketSummaryController(server);
     addTracing(server);
