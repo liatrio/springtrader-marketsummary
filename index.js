@@ -1,7 +1,6 @@
 const hapi = require("@hapi/hapi");
 
 const repository = require("./src/repository");
-const { loadQuoteData } = require("./src/repository/data");
 const marketSummaryController = require("./src/controller/marketsummary");
 const { addTracing, closeTracer } = require("./src/util/tracing");
 
@@ -18,7 +17,6 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
     });
 
     await repository.start();
-    await loadQuoteData();
 
     marketSummaryController(server);
     addTracing(server);

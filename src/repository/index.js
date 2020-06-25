@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { loadQuoteData } = require("./data");
 
 let connection;
 
@@ -13,6 +14,13 @@ const getConnection = () => {
 const start = async () => {
     if (!connection) {
         connection = await mongoose.createConnection(`mongodb://mongodb.${process.env.DATABASE_NAMESPACE}.svc.cluster.local:27017/${process.env.NODE_ENV}`);
+
+        mongoose.connection.db.listCollections({name: 'quotes'})
+        .next(function(err, exists) {
+            if (!exists) {
+                await loadQuoteData();
+            }
+        });
     }
 };
 
