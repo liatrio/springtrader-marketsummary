@@ -19,7 +19,7 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
         handler: () => "ok",
     });
 
-    await repository.start();
+    connection = await repository.start();
 
     connection.db.listCollections().toArray(function (err, collectionNames) {
         console.log("Is connection established?")
