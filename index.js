@@ -19,29 +19,19 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
         handler: () => "ok",
     });
 
-    connection = await repository.start();
+    await repository.start();
+    await loadQuoteData();
+
 
     connection.db.listCollections().toArray(function (err, collectionNames) {
         console.log("Is connection established?")
         if (err) {
             console.log(err);
-            loadQuoteData();
             return;
         }
         console.log(collectionNames);
     })
     
-    /*
-    mongoose.connection.db.listCollections({name: 'quotes'})
-        .next(function(err, exists) {
-            if (!exists) {
-                async() => {
-                    await loadQuoteData();
-                };
-            }
-        });
-    */
-
     marketSummaryController(server);
     addTracing(server);
 
