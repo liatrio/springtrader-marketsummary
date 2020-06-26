@@ -23,6 +23,7 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
 
     connection = repository.getConnection();
     
+    // Lists collections for debugging
     connection.db.listCollections().toArray(function (err, collectionNames) {
         console.log("Is connection established?")
         if (err) {
@@ -32,10 +33,11 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
         console.log(collectionNames);
     })
 
+    // Checks for quotes collection before sending data.
     connection.db.listCollections({name: 'quotes'})
     .next(function (err, collectionExists) {
         if (!collectionExists) {
-            console.log("collection does not exist");
+            console.log("collection does not exist, load data in");
             loadQuoteData();
             return;
         }
