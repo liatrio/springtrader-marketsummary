@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const { loadQuoteData } = require("./src/repository/data");
+
 
 let connection;
 
@@ -17,6 +19,7 @@ const start = async () => {
         connection.db.listCollections().toArray(function (err, collectionNames) {
             if (err) {
                 console.log(err);
+                loadQuoteData();
             }
             console.log(collectionNames);
         })
