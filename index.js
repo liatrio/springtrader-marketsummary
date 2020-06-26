@@ -22,9 +22,7 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
     await repository.start();
 
     connection = repository.getConnection();
-    await loadQuoteData();
-
-
+    
     connection.db.listCollections().toArray(function (err, collectionNames) {
         console.log("Is connection established?")
         if (err) {
@@ -38,6 +36,8 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
     .next(function (err, collectionExists) {
         if (!collectionExists) {
             console.log("collection does not exist");
+            loadQuoteData();
+            return;
         }
         console.log("collection does exist do nothing");
     })
