@@ -33,6 +33,14 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
         }
         console.log(collectionNames);
     })
+
+    connection.db.listCollections({name: 'quotes'})
+    .next(function (err, collectionExists) {
+        if (!collectionExists) {
+            console.log("collection does not exist");
+        }
+        console.log("collection does exist do nothing");
+    })
     
     marketSummaryController(server);
     addTracing(server);
