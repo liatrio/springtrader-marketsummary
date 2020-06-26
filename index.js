@@ -20,6 +20,8 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
     });
 
     await repository.start();
+
+    connection = repository.getConnection();
     await loadQuoteData();
 
 
