@@ -20,6 +20,16 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
     });
 
     await repository.start();
+
+    connection.db.listCollections().toArray(function (err, collectionNames) {
+        console.log("Is connection established?")
+        if (err) {
+            console.log(err);
+            loadQuoteData();
+            return;
+        }
+        console.log(collectionNames);
+    })
     
     /*
     mongoose.connection.db.listCollections({name: 'quotes'})
