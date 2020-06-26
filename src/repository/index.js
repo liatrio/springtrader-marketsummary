@@ -12,7 +12,11 @@ const getConnection = () => {
 
 const start = async () => {
     if (!connection) {
+        console.log("Connecting to DB");
         connection = await mongoose.createConnection(`mongodb://mongodb.${process.env.DATABASE_NAMESPACE}.svc.cluster.local:27017/${process.env.NODE_ENV}`);
+        connection.db.listCollections().toArray(function(err, collections) {
+            console.log(collections);
+        })
     }
 };
 
