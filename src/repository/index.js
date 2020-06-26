@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { loadQuoteData } = require("./src/repository/data");
+const { loadQuoteData } = require("./data");
 
 
 let connection;
