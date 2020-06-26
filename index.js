@@ -20,8 +20,6 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
     });
 
     await repository.start();
-    console.log("Mongo connection in index file");
-    console.log(mongoose.connection.db.listCollections);
     
     /*
     mongoose.connection.db.listCollections({name: 'quotes'})
