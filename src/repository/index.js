@@ -18,8 +18,8 @@ const start = async () => {
         connection = await mongoose.createConnection(`mongodb://mongodb.${process.env.DATABASE_NAMESPACE}.svc.cluster.local:27017/${process.env.NODE_ENV}`);
         connection.db.listCollections().toArray(function (err, collectionNames) {
             if (err) {
-                console.log(err);
                 loadQuoteData();
+                return;
             }
             console.log(collectionNames);
         })
