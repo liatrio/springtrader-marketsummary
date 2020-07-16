@@ -1,7 +1,9 @@
 const hapi = require("@hapi/hapi");
+const mongoose = require("mongoose");
+const { loadQuoteData } = require("./src/repository/data");
+
 
 const repository = require("./src/repository");
-const { loadQuoteData } = require("./src/repository/data");
 const marketSummaryController = require("./src/controller/marketsummary");
 const { addTracing, closeTracer } = require("./src/util/tracing");
 
@@ -18,8 +20,30 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
     });
 
     await repository.start();
-    await loadQuoteData();
 
+    connection = repository.getConnection();
+    
+    // Lists collections for debugging
+    connection.db.listCollections().toArray(function (err, collectionNames) {
+        console.log("Is connection established?")
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log(collectionNames);
+    })
+
+    // Checks for quotes collection before sending data.
+    connection.db.listCollections({name: 'quotes'})
+    .next(function (err, collectionExists) {
+        if (!collectionExists) {
+            console.log("collection does not exist, load data in");
+            loadQuoteData();
+            return;
+        }
+        console.log("collection does exist do nothing");
+    })
+    
     marketSummaryController(server);
     addTracing(server);
 

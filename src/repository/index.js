@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
-const { MongoMemoryServer } = require("mongodb-memory-server");
 
-let mongod, connection;
+let connection;
 
 const getConnection = () => {
     if (!connection) {
@@ -12,21 +11,15 @@ const getConnection = () => {
 };
 
 const start = async () => {
-    if (!mongod) {
-        mongod = new MongoMemoryServer();
-
-        const uri = await mongod.getUri();
-        connection = await mongoose.createConnection(uri);
+    if (!connection) {
+        console.log("Connecting to DB");
+        connection = await mongoose.createConnection(`mongodb://mongodb.${process.env.DATABASE_NAMESPACE}.svc.cluster.local:27017/${process.env.NODE_ENV}`);
     }
 };
 
 const stop = async () => {
     if (connection) {
         await connection.close();
-    }
-
-    if (mongod) {
-        await mongod.stop();
     }
 };
 
