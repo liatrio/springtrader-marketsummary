@@ -12,6 +12,17 @@ fullnameOverride: ""
 workload: springtrader
 nodeEnv:
 
+mongodb:
+  enabled: false
+  auth:
+    database:
+    username: app
+    password: Parker
+
+database:
+  hostname:
+  databaseName:
+
 service:
   type: ClusterIP
   port: 5555

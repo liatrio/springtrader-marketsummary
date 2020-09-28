@@ -6,40 +6,48 @@ const marketSummaryController = require("./src/controller/marketsummary");
 const { addTracing, closeTracer } = require("./src/util/tracing");
 
 (async () => {
-    const server = hapi.server({
-        port: 5555,
-        host: "0.0.0.0",
-    });
+    try {
+        setTimeout(async () => {
 
-    server.route({
-        method: "GET",
-        path: "/healthz",
-        handler: () => "ok",
-    });
+            const server = hapi.server({
+                port: 5555,
+                host: "0.0.0.0"
+            });
 
-    await repository.start();
-    await loadQuoteData();
+            server.route({
+                method: "GET",
+                path: "/healthz",
+                handler: () => "ok"
+            });
 
-    marketSummaryController(server);
-    addTracing(server);
+            await repository.start();
+            await loadQuoteData();
 
-    await server.start();
+            marketSummaryController(server);
+            addTracing(server);
 
-    console.log("Server running on %s", server.info.uri);
+            await server.start();
 
-    ["SIGINT", "SIGTERM"].forEach((signal) => {
-        process.on(signal, async () => {
-            console.log("Termination signal %s received, stopping...", signal);
+            console.log("Server running on %s", server.info.uri);
 
-            await stop(server);
-        });
-    });
+            ["SIGINT", "SIGTERM"].forEach((signal) => {
+                process.on(signal, async () => {
+                    console.log("Termination signal %s received, stopping...", signal);
 
-    process.on("unhandledRejection", async (err) => {
-        console.log("Unhandled promise rejection", err);
+                    await stop(server);
+                });
+            });
 
-        await stop(server, 1);
-    });
+            process.on("unhandledRejection", async (err) => {
+                console.log("Unhandled promise rejection", err);
+
+                await stop(server, 1);
+            });
+        }, 300000)
+    } catch (e) {
+        console.log(e);
+        process.exit(1);
+    }
 })();
 
 const stop = async (server, code = 0) => {

@@ -1,4 +1,8 @@
 {
   "jaegerEndpoint": "http://localhost:14268/api/traces",
-  "requireParentTrace": false
+  "requireParentTrace": false,
+  "database": {
+    "credentialsFile": "/vault/secrets/mongodb.json",
+    "port": "27017"
+  }
 }
