@@ -21,7 +21,7 @@
     "locale-currency": "^0.0.2",
     "mongoose": "^5.9.12",
     "mongoose-sequence": "^5.2.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-watch": "0.6.4"
   },
   "devDependencies": {
