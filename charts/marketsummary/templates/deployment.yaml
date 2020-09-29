@@ -15,6 +15,14 @@ spec:
         app: {{ .Chart.Name }}
         version: {{ .Values.version }}
     spec:
+      initContainers:
+        - name: check-mongodb-ready
+          image: busybox:1.32
+          command: ['sh', '-eu', '-c',
+                    'until nc -vz ${DB_HOSTNAME} 27017; do echo "Waiting for mongo service"; sleep 2; done;']
+          env:
+            - name: DB_HOSTNAME
+              value: {{ .Values.database.hostname }}
       {{- if .Values.mongodb.enabled }}
       volumes:
         - name: database-credentials
