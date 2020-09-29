@@ -43,8 +43,8 @@ const start = async () => {
 
     await createConnection(username, password);
 
-    watcher = watch(CREDENTIALS_FILE, async (event) => {
-        console.log("received watch event:", event);
+    watcher = watch(CREDENTIALS_FILE, async (event, filename) => {
+        console.log(`received watch event on ${filename}: ${event}`);
 
         const { username, password } = await getDatabaseCredentials();
 
