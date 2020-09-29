@@ -39,13 +39,9 @@ async function createConnection(username, password) {
         databaseName,
         username,
         password
-    })
-
-    connection = await mongoose.createConnection(`mongodb://${hostname}:${port}`, {
-        dbName: databaseName,
-        user: username,
-        pass: password
     });
+
+    connection = await mongoose.createConnection(`mongodb://${username}:${password}@${hostname}:${port}/${databaseName}`);
 }
 
 const start = async () => {
