@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image: marketsummary:latest
-version: "0.0.1-SNAPSHOT" 
+version: "0.0.1-SNAPSHOT"
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -18,6 +18,19 @@ mongodb:
     database:
     username: app
     password: password
+
+
+podAnnotations:
+  vault.hashicorp.com/agent-inject: "true"
+  vault.hashicorp.com/role: "joe-lab-staging"
+  vault.hashicorp.com/agent-inject-secret-mongodb.json: "mongodb/creds/joe-lab-staging"
+  vault.hashicorp.com/agent-inject-template-mongodb.json: |
+    {{- with secret "mongodb/creds/joe-lab-staging" -}}
+    {
+      "username": "{{ .Data.username }}",
+      "password": "{{ .Data.password }}"
+    }
+    {{- end }}
 
 database:
   hostname:
