@@ -6,40 +6,48 @@ const marketSummaryController = require("./src/controller/marketsummary");
 const { addTracing, closeTracer } = require("./src/util/tracing");
 
 (async () => {
-    const server = hapi.server({
-        port: 5555,
-        host: "0.0.0.0",
-    });
-
-    server.route({
-        method: "GET",
-        path: "/healthz",
-        handler: () => "ok",
-    });
-
-    await repository.start();
-    await loadQuoteData();
-
-    marketSummaryController(server);
-    addTracing(server);
-
-    await server.start();
-
-    console.log("Server running on %s", server.info.uri);
-
-    ["SIGINT", "SIGTERM"].forEach((signal) => {
-        process.on(signal, async () => {
-            console.log("Termination signal %s received, stopping...", signal);
-
-            await stop(server);
+    try {
+        const server = hapi.server({
+            port: 5555,
+            host: "0.0.0.0",
         });
-    });
 
-    process.on("unhandledRejection", async (err) => {
-        console.log("Unhandled promise rejection", err);
+        server.route({
+            method: "GET",
+            path: "/healthz",
+            handler: () => "ok",
+        });
 
-        await stop(server, 1);
-    });
+        await repository.start();
+        await loadQuoteData();
+
+        marketSummaryController(server);
+        addTracing(server);
+
+        await server.start();
+
+        console.log("Server running on %s", server.info.uri);
+
+        ["SIGINT", "SIGTERM"].forEach((signal) => {
+            process.on(signal, async () => {
+                console.log(
+                    "Termination signal %s received, stopping...",
+                    signal
+                );
+
+                await stop(server);
+            });
+        });
+
+        process.on("unhandledRejection", async (err) => {
+            console.log("Unhandled promise rejection", err);
+
+            await stop(server, 1);
+        });
+    } catch (e) {
+        console.log(e);
+        process.exit(1);
+    }
 })();
 
 const stop = async (server, code = 0) => {

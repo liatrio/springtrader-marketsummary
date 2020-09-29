@@ -19,10 +19,10 @@
     "config": "^3.3.1",
     "jaeger-client": "^3.18.0",
     "locale-currency": "^0.0.2",
-    "mongodb-memory-server": "^6.5.2",
     "mongoose": "^5.9.12",
     "mongoose-sequence": "^5.2.2",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "node-watch": "0.6.4"
   },
   "devDependencies": {
     "prettier": "2.0.5"

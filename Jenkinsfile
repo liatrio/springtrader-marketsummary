@@ -22,9 +22,12 @@ pipeline {
           branch 'master'
       }
       environment {
-        ISTIO_DOMAIN = "${env.stagingDomain}"
-        PRODUCT_NAME = "${env.product}"
-        NODE_ENV     = "staging"
+        ISTIO_DOMAIN     = "${env.stagingDomain}"
+        PRODUCT_NAME     = "${env.product}"
+        NODE_ENV         = "staging"
+        DB_HOSTNAME      = "mongodb.${env.databaseNamespace}.svc.cluster.local"
+        DB_PORT          = "27017"
+        DB_DATABASE_NAME = "staging"
       }
       steps {
         container('skaffold') {
@@ -59,9 +62,12 @@ pipeline {
           branch 'master'
       }
       environment {
-        ISTIO_DOMAIN = "${env.productionDomain}"
-        PRODUCT_NAME = "${env.product}"
-        NODE_ENV     = "production"
+        ISTIO_DOMAIN     = "${env.productionDomain}"
+        PRODUCT_NAME     = "${env.product}"
+        NODE_ENV         = "production"
+        DB_HOSTNAME      = "mongodb.${env.databaseNamespace}.cluster.svc.local"
+        DB_PORT          = "27017"
+        DB_DATABASE_NAME = "production"
       }
       steps {
         container('skaffold') {

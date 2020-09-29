@@ -6,3 +6,5 @@ bin/
 
 .idea/
 node_modules/
+charts/marketsummary/charts/
+charts/marketsummary/Chart.lock

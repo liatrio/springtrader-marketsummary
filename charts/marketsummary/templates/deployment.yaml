@@ -4,7 +4,7 @@ metadata:
   name: {{ .Chart.Name }}
   labels:
     app: {{ .Chart.Name }}
-    version: {{ .Values.version }}  
+    version: {{ .Values.version }}
 spec:
   selector:
     matchLabels:
@@ -15,6 +15,20 @@ spec:
         app: {{ .Chart.Name }}
         version: {{ .Values.version }}
     spec:
+      initContainers:
+        - name: check-mongodb-ready
+          image: busybox:1.32
+          command: ['sh', '-eu', '-c',
+                    'until nc -vz ${DB_HOSTNAME} 27017; do echo "Waiting for mongo service"; sleep 2; done;']
+          env:
+            - name: DB_HOSTNAME
+              value: {{ .Values.database.hostname }}
+      {{- if .Values.mongodb.enabled }}
+      volumes:
+        - name: database-credentials
+          configMap:
+            name: database-credentials
+      {{- end }}
       containers:
       - name: {{ .Chart.Name }}
         image: {{ .Values.image }}
@@ -23,6 +37,10 @@ spec:
           value: marketsummary.{{ .Release.Namespace }}
         - name: NODE_ENV
           value: {{ .Values.nodeEnv }}
+        - name: DB_HOSTNAME
+          value: {{ .Values.database.hostname }}
+        - name: DB_DATABASE_NAME
+          value: {{ .Values.database.databaseName }}
         livenessProbe:
           httpGet:
             path: /healthz
@@ -35,6 +53,11 @@ spec:
             port: {{ .Values.service.port }}
           initialDelaySeconds: 5
           periodSeconds: 5
+        {{- if .Values.mongodb.enabled }}
+        volumeMounts:
+          - mountPath: /vault/secrets
+            name: database-credentials
+        {{- end }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}

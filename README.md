@@ -17,6 +17,13 @@ The rewritten version of this microservice uses the following technologies:
 
 ## Running locally
 
+## Skaffold
+
+- `make local`: Runs `skaffold run` on local Kubernetes cluster.
+- `make local-delete`: Cleans up local Kubernetes deployment.
+
+## Node/Docker
+
 After cloning the repository, you can use `yarn` to install the needed dependencies, and `yarn start` to start the application on port 5555.
 
 Optionally, you can also run Jaeger locally to see traces created by the microservice:

@@ -1,7 +1,24 @@
+const fs = require("fs");
+const util = require("util");
 const mongoose = require("mongoose");
-const { MongoMemoryServer } = require("mongodb-memory-server");
+const config = require("config");
+const watch = require("node-watch");
 
-let mongod, connection;
+const CREDENTIALS_FILE = config.get("database.credentialsFile");
+
+let connection, watcher;
+
+async function getDatabaseCredentials() {
+    const data = await util.promisify(fs.readFile)(CREDENTIALS_FILE);
+
+    return JSON.parse(data);
+}
+
+async function setConnection(username, password) {
+    const newConnection = await createConnection(username, password);
+
+    connection = newConnection;
+}
 
 const getConnection = () => {
     if (!connection) {
@@ -11,22 +28,37 @@ const getConnection = () => {
     return connection;
 };
 
-const start = async () => {
-    if (!mongod) {
-        mongod = new MongoMemoryServer();
+async function createConnection(username, password) {
+    const hostname = config.get("database.hostname"),
+        port = config.get("database.port"),
+        databaseName = config.get("database.databaseName");
 
-        const uri = await mongod.getUri();
-        connection = await mongoose.createConnection(uri);
-    }
+    connection = await mongoose.createConnection(
+        `mongodb://${username}:${password}@${hostname}:${port}/${databaseName}`
+    );
+}
+
+const start = async () => {
+    const { username, password } = await getDatabaseCredentials();
+
+    await createConnection(username, password);
+
+    watcher = watch(CREDENTIALS_FILE, async (event, filename) => {
+        console.log(`received watch event on ${filename}: ${event}`);
+
+        const { username, password } = await getDatabaseCredentials();
+
+        await setConnection(username, password);
+    });
 };
 
 const stop = async () => {
-    if (connection) {
-        await connection.close();
+    if (watcher) {
+        watcher.close();
     }
 
-    if (mongod) {
-        await mongod.stop();
+    if (connection) {
+        await connection.close();
     }
 };
 
