@@ -17,7 +17,7 @@ mongodb:
   auth:
     database:
     username: app
-    password: Parker
+    password: password
 
 database:
   hostname:

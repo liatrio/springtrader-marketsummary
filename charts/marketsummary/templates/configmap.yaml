@@ -7,6 +7,6 @@ data:
   "mongodb.json": |
     {
       "username": "app",
-      "password": "Parker"
+      "password": "password"
     }
 {{- end }}

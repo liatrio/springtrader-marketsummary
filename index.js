@@ -7,43 +7,40 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
 
 (async () => {
     try {
-        setTimeout(async () => {
+        const server = hapi.server({
+            port: 5555,
+            host: "0.0.0.0"
+        });
 
-            const server = hapi.server({
-                port: 5555,
-                host: "0.0.0.0"
+        server.route({
+            method: "GET",
+            path: "/healthz",
+            handler: () => "ok"
+        });
+
+        await repository.start();
+        await loadQuoteData();
+
+        marketSummaryController(server);
+        addTracing(server);
+
+        await server.start();
+
+        console.log("Server running on %s", server.info.uri);
+
+        ["SIGINT", "SIGTERM"].forEach((signal) => {
+            process.on(signal, async () => {
+                console.log("Termination signal %s received, stopping...", signal);
+
+                await stop(server);
             });
+        });
 
-            server.route({
-                method: "GET",
-                path: "/healthz",
-                handler: () => "ok"
-            });
+        process.on("unhandledRejection", async (err) => {
+            console.log("Unhandled promise rejection", err);
 
-            await repository.start();
-            await loadQuoteData();
-
-            marketSummaryController(server);
-            addTracing(server);
-
-            await server.start();
-
-            console.log("Server running on %s", server.info.uri);
-
-            ["SIGINT", "SIGTERM"].forEach((signal) => {
-                process.on(signal, async () => {
-                    console.log("Termination signal %s received, stopping...", signal);
-
-                    await stop(server);
-                });
-            });
-
-            process.on("unhandledRejection", async (err) => {
-                console.log("Unhandled promise rejection", err);
-
-                await stop(server, 1);
-            });
-        }, 300000)
+            await stop(server, 1);
+        });
     } catch (e) {
         console.log(e);
         process.exit(1);
