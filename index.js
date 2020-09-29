@@ -9,13 +9,13 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
     try {
         const server = hapi.server({
             port: 5555,
-            host: "0.0.0.0"
+            host: "0.0.0.0",
         });
 
         server.route({
             method: "GET",
             path: "/healthz",
-            handler: () => "ok"
+            handler: () => "ok",
         });
 
         await repository.start();
@@ -30,7 +30,10 @@ const { addTracing, closeTracer } = require("./src/util/tracing");
 
         ["SIGINT", "SIGTERM"].forEach((signal) => {
             process.on(signal, async () => {
-                console.log("Termination signal %s received, stopping...", signal);
+                console.log(
+                    "Termination signal %s received, stopping...",
+                    signal
+                );
 
                 await stop(server);
             });

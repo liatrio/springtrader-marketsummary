@@ -15,7 +15,7 @@ const Quote = () => {
             inc_field: "quoteid",
         });
 
-        setup = true
+        setup = true;
     }
 
     return connection.model("Quote", quoteSchema);

@@ -12,13 +12,13 @@ async function getDatabaseCredentials() {
     const data = await util.promisify(fs.readFile)(CREDENTIALS_FILE);
 
     return JSON.parse(data);
-};
+}
 
 async function setConnection(username, password) {
     const newConnection = await createConnection(username, password);
 
     connection = newConnection;
-};
+}
 
 const getConnection = () => {
     if (!connection) {
@@ -33,7 +33,9 @@ async function createConnection(username, password) {
         port = config.get("database.port"),
         databaseName = config.get("database.databaseName");
 
-    connection = await mongoose.createConnection(`mongodb://${username}:${password}@${hostname}:${port}/${databaseName}`);
+    connection = await mongoose.createConnection(
+        `mongodb://${username}:${password}@${hostname}:${port}/${databaseName}`
+    );
 }
 
 const start = async () => {
@@ -63,5 +65,5 @@ const stop = async () => {
 module.exports = {
     start,
     stop,
-    getConnection
+    getConnection,
 };
