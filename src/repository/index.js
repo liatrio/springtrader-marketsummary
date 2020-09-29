@@ -33,14 +33,6 @@ async function createConnection(username, password) {
         port = config.get("database.port"),
         databaseName = config.get("database.databaseName");
 
-    console.log({
-        hostname,
-        port,
-        databaseName,
-        username,
-        password
-    });
-
     connection = await mongoose.createConnection(`mongodb://${username}:${password}@${hostname}:${port}/${databaseName}`);
 }
 
