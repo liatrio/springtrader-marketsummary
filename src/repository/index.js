@@ -22,14 +22,14 @@ const getConnection = () => {
     return connection;
 };
 
-async function createConnection(username, password) {
+// createConnection returns a promise.
+function createConnection(username, password) {
     const hostname = config.get("database.hostname"),
         port = config.get("database.port"),
         databaseName = config.get("database.databaseName");
-    const connectionString = `mongodb://${username}:${password}@${hostname}:${port}/${databaseName}?authSource=admin`
+    const connectionString = `mongodb://${username}:${password}@${hostname}:${port}/${databaseName}?authSource=admin`;
 
-    const newConnection = await mongoose.createConnection(connectionString);
-    return newConnection
+    return mongoose.createConnection(connectionString);
 }
 
 const start = async () => {
