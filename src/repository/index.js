@@ -32,10 +32,9 @@ async function createConnection(username, password) {
     const hostname = config.get("database.hostname"),
         port = config.get("database.port"),
         databaseName = config.get("database.databaseName");
-
-    connection = await mongoose.createConnection(
-        `mongodb://${username}:${password}@${hostname}:${port}/${databaseName}`
-    );
+    const connectionString = `mongodb://${username}:${password}@${hostname}:${port}/${databaseName}`
+    console.log('Using connection string:', connectionString)
+    connection = await mongoose.createConnection(connectionString);
 }
 
 const start = async () => {
