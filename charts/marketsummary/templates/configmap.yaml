@@ -6,7 +6,7 @@ metadata:
 data:
   "mongodb.json": |
     {
-      "username": "app",
-      "password": "password"
+      "username": {{ .Values.database.username | quote }},
+      "password": {{ .Values.database.password | quote }}
     }
 {{- end }}

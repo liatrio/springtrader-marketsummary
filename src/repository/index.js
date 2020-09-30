@@ -27,7 +27,7 @@ async function createConnection(username, password) {
         port = config.get("database.port"),
         databaseName = config.get("database.databaseName");
     const connectionString = `mongodb://${username}:${password}@${hostname}:${port}/${databaseName}?authSource=admin`
-    console.log('Using connection string:', connectionString)
+
     const newConnection = await mongoose.createConnection(connectionString);
     return newConnection
 }
@@ -37,8 +37,8 @@ const start = async () => {
 
     connection = await createConnection(username, password);
 
-    watcher = watch(CREDENTIALS_FILE, async (event) => {
-        console.log("received watch event:", event);
+    watcher = watch(CREDENTIALS_FILE, async (event, filename) => {
+        console.log(`received watch event on ${filename}: ${event}`);
 
         const { username, password } = await getDatabaseCredentials();
 

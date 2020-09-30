@@ -17,6 +17,8 @@ mongodb:
   initdbScriptsConfigMap: local-mongodb-initdbscripts
 
 database:
+  username: app
+  password: password
   hostname:
   databaseName:
 
