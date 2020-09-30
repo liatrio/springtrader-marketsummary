@@ -10,7 +10,7 @@ create-ns:
 local: create-ns
 	kubectl config use-context docker-desktop
 	DB_HOSTNAME=marketsummary-mongodb \
-	DB_DATABASE_NAME=admin \
+	DB_DATABASE_NAME=staging \
 	skaffold run -n ${namespace} --port-forward --tail
 
 local-delete:

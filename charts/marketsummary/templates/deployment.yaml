@@ -12,10 +12,18 @@ spec:
   template:
     metadata:
     {{- if not .Values.mongodb.enabled }}
-      {{- with .Values.podAnnotations }}
       annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        vault.hashicorp.com/agent-init-first: "true"
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "{{ .Release.Namespace }}"
+        vault.hashicorp.com/agent-inject-secret-mongodb.json: "mongodb/creds/{{ .Release.Namespace }}"
+        vault.hashicorp.com/agent-inject-template-mongodb.json: |
+          {{ `{{` }}- with secret "mongodb/creds/{{ .Release.Namespace }}" -{{ `}}` }}
+          {
+            "username": "{{ `{{` }} .Data.username {{ `}}` }}",
+            "password": "{{ `{{` }} .Data.password {{ `}}` }}",
+          }
+          {{ `{{` }}- end {{ `}}` }}
     {{- end }}
       labels:
         app: {{ .Chart.Name }}

@@ -26,10 +26,10 @@ async function createConnection(username, password) {
     const hostname = config.get("database.hostname"),
         port = config.get("database.port"),
         databaseName = config.get("database.databaseName");
-    const connectionString = `mongodb://${username}:${password}@${hostname}:${port}`
+    const connectionString = `mongodb://${username}:${password}@${hostname}:${port}/${databaseName}?authSource=admin`
     console.log('Using connection string:', connectionString)
     const newConnection = await mongoose.createConnection(connectionString);
-    return newConnection.useDb(databaseName)
+    return newConnection
 }
 
 const start = async () => {

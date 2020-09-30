@@ -14,24 +14,7 @@ nodeEnv:
 
 mongodb:
   enabled: false
-  auth:
-    database:
-    username: app
-    password: password
-
-
-podAnnotations:
-  vault.hashicorp.com/agent-init-first: "true"
-  vault.hashicorp.com/agent-inject: "true"
-  vault.hashicorp.com/role: "joe-lab-staging"
-  vault.hashicorp.com/agent-inject-secret-mongodb.json: "mongodb/creds/joe-lab-staging"
-  vault.hashicorp.com/agent-inject-template-mongodb.json: |
-    {{- with secret "mongodb/creds/joe-lab-staging" -}}
-    {
-      "username": "{{ .Data.username }}",
-      "password": "{{ .Data.password }}"
-    }
-    {{- end }}
+  initdbScriptsConfigMap: local-mongodb-initdbscripts
 
 database:
   hostname:
