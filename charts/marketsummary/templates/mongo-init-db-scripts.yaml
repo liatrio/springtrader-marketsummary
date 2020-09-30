@@ -1,0 +1,29 @@
+{{- if .Values.mongodb.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: local-mongodb-initdbscripts
+data:
+  setup-user.js: |
+    use admin;
+    try {
+      db.createUser(
+        {
+          user: {{ .Values.database.username | quote }},
+          pwd: {{ .Values.database.password | quote }},
+          roles: [
+            {
+              role: "readWrite",
+              db: "{{ .Values.database.databaseName }}"
+            }
+          ]
+        }
+      );
+    } catch (error) {
+      if (error.message.match(/User "{{ .Values.database.username }}@{{ .Values.database.databaseName }}" already exists/)) {
+        print("User not created because already exists");
+      } else {
+        throw error;
+      }
+    }
+  {{- end }}

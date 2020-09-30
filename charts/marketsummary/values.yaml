@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image: marketsummary:latest
-version: "0.0.1-SNAPSHOT" 
+version: "0.0.1-SNAPSHOT"
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -14,12 +14,11 @@ nodeEnv:
 
 mongodb:
   enabled: false
-  auth:
-    database:
-    username: app
-    password: password
+  initdbScriptsConfigMap: local-mongodb-initdbscripts
 
 database:
+  username: app
+  password: password
   hostname:
   databaseName:
 

@@ -28,6 +28,13 @@ profiles:
       - op: add
         path: /deploy/helm/releases/0/setValues/mongodb.enabled
         value: true
+      - op: remove
+        path: /deploy/helm/releases/0/setValueTemplates/database.hostname
       - op: add
-        path: /deploy/helm/releases/0/setValueTemplates/mongodb.auth.database
-        value: "{{.DB_DATABASE_NAME}}"
+        path: /deploy/helm/releases/0/setValues/database.hostname
+        value: marketsummary-mongodb
+      - op: remove
+        path: /deploy/helm/releases/0/setValueTemplates/database.databaseName
+      - op: add
+        path: /deploy/helm/releases/0/setValues/database.databaseName
+        value: staging
