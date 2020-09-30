@@ -21,7 +21,7 @@ spec:
           {{ `{{` }}- with secret "mongodb/creds/{{ .Release.Namespace }}" -{{ `}}` }}
           {
             "username": "{{ `{{` }} .Data.username {{ `}}` }}",
-            "password": "{{ `{{` }} .Data.password {{ `}}` }}",
+            "password": "{{ `{{` }} .Data.password {{ `}}` }}"
           }
           {{ `{{` }}- end {{ `}}` }}
     {{- end }}
