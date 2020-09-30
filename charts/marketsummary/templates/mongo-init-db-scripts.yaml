@@ -20,7 +20,7 @@ data:
         }
       );
     } catch (error) {
-      if (error.message.match(/User "app@{{ .Values.database.databaseName }}" already exists/)) {
+      if (error.message.match(/User "{{ .Values.database.username }}@{{ .Values.database.databaseName }}" already exists/)) {
         print("User not created because already exists");
       } else {
         throw error;
