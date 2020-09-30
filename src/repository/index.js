@@ -14,12 +14,6 @@ async function getDatabaseCredentials() {
     return JSON.parse(data);
 }
 
-async function setConnection(username, password) {
-    const newConnection = await createConnection(username, password);
-
-    connection = newConnection;
-}
-
 const getConnection = () => {
     if (!connection) {
         throw new Error("monogodb connection hasn't been created yet");
@@ -32,22 +26,23 @@ async function createConnection(username, password) {
     const hostname = config.get("database.hostname"),
         port = config.get("database.port"),
         databaseName = config.get("database.databaseName");
-    const connectionString = `mongodb://${username}:${password}@${hostname}:${port}/${databaseName}`
+    const connectionString = `mongodb://${username}:${password}@${hostname}:${port}`
     console.log('Using connection string:', connectionString)
-    connection = await mongoose.createConnection(connectionString);
+    const newConnection = await mongoose.createConnection(connectionString);
+    return newConnection.useDb(databaseName)
 }
 
 const start = async () => {
     const { username, password } = await getDatabaseCredentials();
 
-    await createConnection(username, password);
+    connection = await createConnection(username, password);
 
     watcher = watch(CREDENTIALS_FILE, async (event) => {
         console.log("received watch event:", event);
 
         const { username, password } = await getDatabaseCredentials();
 
-        await setConnection(username, password);
+        connection = await createConnection(username, password);
     });
 };
 
