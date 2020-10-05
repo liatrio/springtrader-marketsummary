@@ -22,12 +22,21 @@ const getConnection = () => {
     return connection;
 };
 
+const configureMongooseForDriverDeprecations = () => {
+    mongoose.set('useNewUrlParser', true);
+    mongoose.set('useFindAndModify', false);
+    mongoose.set('useCreateIndex', true);
+    mongoose.set('useUnifiedTopology', true);
+};
+
 // createConnection returns a promise.
 function createConnection(username, password) {
     const hostname = config.get("database.hostname"),
         port = config.get("database.port"),
         databaseName = config.get("database.databaseName");
     const connectionString = `mongodb://${username}:${password}@${hostname}:${port}/${databaseName}?authSource=admin`;
+
+    configureMongooseForDriverDeprecations();
 
     return mongoose.createConnection(connectionString);
 }
