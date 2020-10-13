@@ -1,6 +1,6 @@
 MAKEFLAGS+=--silent
 
-.PHONY: skaffold-dev
+.PHONY: create-ns local local-delete
 
 namespace=springtrader-marketsummary
 
