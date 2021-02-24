@@ -1,5 +1,5 @@
 pipeline {
-  agent none
+  agent { label "minimal" }
   stages {
     stage('Build') {
       agent {
@@ -44,7 +44,7 @@ pipeline {
         branch 'master'
       }
       options {
-        timeout(time: 30, unit: 'MINUTES')
+        timeout(time: 10, unit: 'MINUTES')
       }
       input {
         message 'Deploy to Production?'
