@@ -65,7 +65,7 @@ pipeline {
         ISTIO_DOMAIN     = "${env.productionDomain}"
         PRODUCT_NAME     = "${env.product}"
         NODE_ENV         = "production"
-        DB_HOSTNAME      = "mongodb.${env.databaseNamespace}.cluster.svc.local"
+        DB_HOSTNAME      = "mongodb.${env.databaseNamespace}.svc.cluster.local"
         DB_PORT          = "27017"
         DB_DATABASE_NAME = "production"
       }
